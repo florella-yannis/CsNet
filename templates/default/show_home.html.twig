@@ -6,67 +6,120 @@
 {% block body %}
 	<main>
 
-    {# *****************section1****************** #}
+		{# *****************section1****************** #}
 
 		<section class="section1">
 			<div class="herobanner">
 				<div class="text-hb">
 					<h1>Entretien d'immeuble et d'espace vert</h1>
 					<span>Toute mon experience à votre service</span>
-					<a href="">
-						<i class="fa-solid fa-chevron-down" style="color: #000000;"></i>
-					</a>
 				</div>
+				<a href="">
+					<i class="fa-solid fa-chevron-down" style="color: #000000;"></i>
+				</a>
 			</div>
 		</section>
 
-    {# *****************section2****************** #}
+		{# *****************section2****************** #}
 		<section class="section2">
-        <h2>CS NET , Entreprise de nettoyage dans l'Oise et le Val d'oise</h2>
+			<h2>CS NET , Entreprise de nettoyage dans l'Oise et le Val d'oise</h2>
 			<div class="container">
 				<div class="text-s2">
-				<span>Des prestations variées</span>
-				<p>Nous offrons des services de nettoyage professionnels pour les bureaux et les espaces communs, ainsi que l'entretien de jardins pour les particuliers et les entreprises. Nous sommes déterminés à fournir des services de qualité supérieure à nos clients, avec des équipes expérimentées et des équipements modernes pour garantir un travail efficace et rapide.</p>
-				<p>Nous sommes fiers de notre approche personnelle et de notre engagement à fournir un excellent service client. Notre objectif est de répondre à tous les besoins de nettoyage et d'entretien de nos clients avec des solutions sur mesure, adaptées à chaque situation.</p>
-				<p>Nous sommes impatients de travailler avec vous pour répondre à vos besoins de nettoyage et d'entretien d'espaces verts. Contactez-nous dès aujourd'hui pour discuter de vos projets et obtenir un devis personnalisé.</p>
-        </div>
-        <div class="img-s2">
-        {# <img src="{{asset('images/section2.jpg')}}" alt="image"> #}
-        </div>
+					<span>Des prestations variées</span>
+					<p>Nous offrons des services de nettoyage professionnels pour les bureaux et les espaces communs, ainsi que l'entretien de jardins pour les particuliers et les entreprises. Nous sommes déterminés à fournir des services de qualité supérieure à nos clients, avec des équipes expérimentées et des équipements modernes pour garantir un travail efficace et rapide.</p>
+					<p>Nous sommes fiers de notre approche personnelle et de notre engagement à fournir un excellent service client. Notre objectif est de répondre à tous les besoins de nettoyage et d'entretien de nos clients avec des solutions sur mesure, adaptées à chaque situation.</p>
+					<p>Nous sommes impatients de travailler avec vous pour répondre à vos besoins de nettoyage et d'entretien d'espaces verts. Contactez-nous dès aujourd'hui pour discuter de vos projets et obtenir un devis personnalisé.</p>
+				</div>
+				<div
+					class="img-s2">{# <img src="{{asset('images/section2.jpg')}}" alt="image"> #}
+				</div>
 			</div>
 			<div class="herosection">
-            <div class="hs-img">
-				<div class="text-hs">
-					<h2>CONTACTEZ-NOUS</h2>
-					<span>Pour en savoir plus sur nos prestations</span>
-					<button>Nous contacter</button>
-                    </div>
+				<div class="hs-img">
+					<div class="text-hs">
+						<h2>CONTACTEZ-NOUS</h2>
+						<span>Pour en savoir plus sur nos prestations</span>
+						<a class="button" href="">Nous contacter</a>
+					</div>
 				</div>
 			</div>
 		</section>
 
-        {# *****************section3****************** #}
+		{# *****************section3****************** #}
 		<section class="section3">
 			<h2>Pourquoi choisir la société CS NET ?</h2>
 			<div class="container2">
 				<div class="box">
-                <i class="bi bi-award-fill"></i>
-					<h3>Prestations sur mesure</h3>
+					<div class="grad s1">
+						<i class="bi bi-award-fill"></i>
+						<h3>Prestations sur mesure</h3>
+					</div>
 					<p>CS NET intervient selon vos besoins & exigences</p>
 				</div>
-                <div class="box">
-					
-                    <i class="bi bi-lightning-charge-fill"></i>
-                    <h3>Réactivité</h3>
+				<div class="box">
+					<div class="grad s2">
+						<i class="bi bi-lightning-charge-fill"></i>
+						<h3>Réactivité</h3>
+					</div>
 					<p>CS NET met un point d'honneur à répondre le plus rapidement possible à vos demandes afin de planifier les interventions au plus tôt.</p>
 				</div>
-                <div class="box">
-					
-                    <i class="bi bi-ui-checks-grid"></i>
-                    <h3>Devis gratuit personnalisé</h3>
+				<div class="box">
+					<div class="grad s3">
+						<i class="bi bi-ui-checks-grid"></i>
+						<h3>Devis gratuit personnalisé</h3>
+					</div>
 					<p>Suite à un appel téléphonique par un de nos conseillers, nous vous proposerons un rdv directement dans vos locaux afin d’établir un devis précis et complet.</p>
 				</div>
 			</div>
+		</section>
+		<div class="trait"></div>
+		{# /*****************section4**********************/ #}
+
+		<section class="section4">
+			<h2>Nos prestations</h2>
+
+			<div class="prestations">
+				<div class="presta">
+					<a href="">Espace-vert<i class="bi bi-search"></i><img src="{{asset('images/prestation1.jpg')}}" alt="ecran1"></a>
+				</div>
+				<div class="presta">
+					<a href="">Nettoyage<i class="bi bi-search"></i><img src="{{asset('images/prestation2.jpg')}}" alt="ecran1"></a>
+				</div>
+
+			</div>
+		</section>
+
+		{# /**********section5******************/ #}
+
+		<section class="section5">
+			<div class="herosection2">
+				<div class="hs-img2">
+					<h2>Contact</h2>
+				</div>
+			</div>
+			
+			<div class="map">
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d16340.488788210181!2d2.15257321695158!3d49.12658042941474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6590310dd69d9%3A0x40b82c3688b2f70!2s95690%20Nesles-la-Vall%C3%A9e!5e0!3m2!1sfr!2sfr!4v1682695877633!5m2!1sfr!2sfr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+				<div class="carte">
+					<h3>Vous avez un projet ?</h3>
+					<p>Je serai ravi d'en discuter avec vous.</p>
+					<ul>
+						<li>
+							<i class="fa-solid fa-location-dot"></i>
+							95690 Nesles-la-Vallée</li>
+						<li>
+							<i class="fa-solid fa-location-arrow"></i>
+							L'Oise et Val d'Oise</li>
+						<li>
+							<i class="fa-solid fa-phone"></i>
+							+33 06 11 22 22 33</li>
+						<li>
+							<i class="fa-solid fa-car"></i>
+							Permis B</li>
+					</ul>
+				</div>
+			</div>
+
 		</section>
 
 	</main>
