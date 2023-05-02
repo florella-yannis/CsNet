@@ -91,6 +91,11 @@ header nav ul li a:hover::after{
     justify-content: center;
     position: relative;
 }
+.section1 .herobanner .text-hb h1{
+    font-size: 3.5rem;
+    color: #ffffff;
+    font-family: 'Open Sans', sans-serif;
+}
 .section1 .herobanner a{
     position: absolute;
     bottom: 75px;
