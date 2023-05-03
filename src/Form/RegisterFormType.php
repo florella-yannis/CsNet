@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
 class RegisterFormType extends AbstractType
 {
@@ -33,8 +34,12 @@ class RegisterFormType extends AbstractType
                 ])
             ]
         ])
-            ->add('password', PasswordType::class, [
-                'label' => 'Mot de passe',
+        ->add('password', RepeatedType::class, [
+            'type' => PasswordType::class,
+            'invalid_message' =>"Les champs du mot de passe ne sont pas identiques",
+            'required' => true,
+            'first_options' => ['label' =>'Mot de passe' ],
+            'second_options' => ['label' => 'Répéter le mot de passe'],
                 'constraints' => [
                     new NotBlank([
                         'message' =>'Ce champ ne peut etre vide'
@@ -83,11 +88,15 @@ class RegisterFormType extends AbstractType
                 ],
                 'expanded' => true,
                 'label_attr' => [
-                    'class' => 'radio-inline'
+                    'class' => 'radio-inline',
+                    'for' => 'particulier-option' // ID de l'input "Particulier"
                 ],
                 'choice_attr' => [
                     'class' => 'radio-inline',
                     'Particulier'=>[
+                        'id'=>"particulier-option"
+                    ],
+                    'Entreprise'=>[
                         'id'=>"particulier-option"
                     ]
                 ],
@@ -96,7 +105,7 @@ class RegisterFormType extends AbstractType
                         'message' =>'Ce champ ne peut etre vide'
                     ]),
                 ]
-            ])
+            ])            
             ->add('city', TextType::class, [
                 'label'=> "Ville",
                 'constraints' => [
@@ -111,17 +120,17 @@ class RegisterFormType extends AbstractType
                     'id' => "company-input"
                 ],
                 
-                'constraints' => [
-                    new NotBlank([
-                        'message' =>'Ce champ ne peut etre vide'
-                    ]),
-                    new Length([
-                        'min' => 1,
-                        'max' => 100,
-                        'minMessage' =>'Le nom de votre entreprise doit comporter au minimum {{ limit }} caractères.(nom : {{ value }})',
-                        'maxMessage' =>'Le nom de votre entreprise doit comporter au maximum {{ limit }} caractères.(nom : {{ value }})',
-                    ]),
-                ]
+                // 'constraints' => [
+                //     new NotBlank([
+                //         'message' =>'Ce champ ne peut etre vide'
+                //     ]),
+                //     new Length([
+                //         'min' => 1,
+                //         'max' => 100,
+                //         'minMessage' =>'Le nom de votre entreprise doit comporter au minimum {{ limit }} caractères.(nom : {{ value }})',
+                //         'maxMessage' =>'Le nom de votre entreprise doit comporter au maximum {{ limit }} caractères.(nom : {{ value }})',
+                //     ]),
+                // ]
             ])
             ->add('submit', SubmitType::class, [
                 'label'=> 'Valider',

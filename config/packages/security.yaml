@@ -35,8 +35,8 @@ security:
         # - { path: ^/profile, roles: ROLE_USER }
 
     role_hierarchy:
-        ROLE_USER: IS_AUTHENTICATED_FULLY
-        ROLE_ADMIN: ROLE_USER
+        # ROLE_USER: IS_AUTHENTICATED_FULLY
+        # ROLE_ADMIN: ROLE_USER
 
 
 when@test:

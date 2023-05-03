@@ -5,6 +5,12 @@
 {% block body %}
 
     <div class="row">
+        <div class="col-6 mx-auto">
+            {% include 'include/_flashes.html.twig' %}
+        </div>
+    </div>
+
+    <div class="row">
 
         <h1 class="text-center my-4"> Connectez-vous</h1>
         <div class="col-4 mt-4 mx-auto">
@@ -23,8 +29,6 @@
                 {#    {% endif %}#}
 
 
-
-                <h1 class="h3 mb-3 font-weight-normal text-center">Connectez-vous !</h1>
                 <label for="inputEmail">Email</label>
                 <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
                 <label for="inputPassword">Mot de passe</label>

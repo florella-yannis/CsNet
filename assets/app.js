@@ -11,3 +11,4 @@ import './styles/acceuil.css';
 
 // start the Stimulus application
 import './bootstrap';
+
