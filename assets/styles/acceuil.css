@@ -217,6 +217,28 @@ background: linear-gradient(to right, #64E8EA 0%, #62E1B6 100%);
         background: -webkit-linear-gradient(left, #62e1b6 0%, #8AE087 100%);
         background: linear-gradient(to right, #62e1b6 0%, #8AE087 100%);
     }
+    .section3 .container2 .box .wig.card1{
+        background-image: url(../../public/images/presta.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        opacity: 0.33;
+    }
+    .section3 .container2 .box .wig.card2{
+        background-image: url(../../public/images/reactivite.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        opacity: 0.33;
+        background-position: center;
+    }
+    .section3 .container2 .box .wig.card3{
+        background-image: url(../../public/images/devis.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        opacity: 0.33;
+        background-position: center;
+    }
+
+
 
 .section3 .container2 .box i{
     font-size: 35px;

@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon profil | CSNET
+{% endblock %}
+
+
+{% block body %}
+	<div class="row">
+		<div class="col-6">
+		{% include 'include/_flashes.html.twig' %}
+
+			<h2 class="text-center">Mes informations</h2>
+
+			<ul>
+				<li>{{ user.firstname }}</li>
+				<li>{{ user.lastname }}</li>
+				<li>{{ user.company }}</li>
+				<li>{{ user.company }}</li>
+				<li>{{ user.number }}</li>
+				<li>{{ user.adress }}</li>
+				<li>{{ user.city }}</li>
+				<li>{{ user.zipcode }}</li>
+				<li>{{ user.email }}</li>
+
+			</ul>
+
+			<a href="{{ path('edit_profil', {'id': user.id}) }}" class="btn btn-info" title="Modifier le profil"><i class="bi bi-pencil-square"></i></a>
+
+		{% endblock %}
