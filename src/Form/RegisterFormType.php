@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
@@ -119,7 +120,7 @@ class RegisterFormType extends AbstractType
                 'attr' =>[
                     'id' => "company-input"
                 ],
-                
+                // 'required' => false,
                 // 'constraints' => [
                 //     new NotBlank([
                 //         'message' =>'Ce champ ne peut etre vide'
@@ -132,6 +133,48 @@ class RegisterFormType extends AbstractType
                 //     ]),
                 // ]
             ])
+            ->add('number', TextType::class, [
+                'label' => 'Numéro de téléphone',
+                'constraints' => [
+                    new NotBlank([
+                        'message' =>'Ce champ ne peut etre vide'
+                    ]),
+                    new Length([
+                        'min' => 10,
+                        'max' => 50,
+                        'minMessage' =>'Votre numéro de téléphone doit comporter au minimum {{ limit }} caractères.(numéro de téléphone : {{ value }})',
+                        'maxMessage' =>'Votre numéro de téléphone doit comporter au maximum {{ limit }} caractères.(numéro de téléphone : {{ value }})',
+                    ]),
+                ],
+            ])
+            ->add('adress', TextType::class, [
+                'label' => 'Adresse',
+                'constraints' => [
+                    new NotBlank([
+                        'message' =>'Ce champ ne peut etre vide'
+                    ]),
+                    new Length([
+                        'min' => 2,
+                        'max' => 200,
+                        'minMessage' =>'Votre adresse doit comporter au minimum {{ limit }} caractères. adresse : {{ value }})',
+                        'maxMessage' =>'Votre adresse doit comporter au maximum {{ limit }} caractères. adresse : {{ value }})',
+                    ]),
+                ],
+            ])
+            ->add('zipcode', IntegerType::class, [
+                'label' => 'Code postal',
+                'constraints' => [
+                    new NotBlank([
+                        'message' =>'Ce champ ne peut etre vide'
+                    ]),
+                    new Length([
+                        'min' => 2,
+                        'max' => 100,
+                        'minMessage' =>'Votre code postal doit comporter au minimum {{ limit }} caractères.(code postal : {{ value }})',
+                        'maxMessage' =>'Votre code postal doit comporter au maximum {{ limit }} caractères.(code postal : {{ value }})',
+                    ]),
+                ],
+            ])
             ->add('submit', SubmitType::class, [
                 'label'=> 'Valider',
                 'validate' => false,
@@ -139,7 +182,7 @@ class RegisterFormType extends AbstractType
                     'class' => 'd-block mx-auto col-3 btn btn-warning'
                 ]
             ])
-        ;
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
