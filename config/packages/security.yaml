@@ -36,7 +36,7 @@ security:
 
     role_hierarchy:
         # ROLE_USER: IS_AUTHENTICATED_FULLY
-        # ROLE_ADMIN: ROLE_USER
+        ROLE_ADMIN: ROLE_USER
 
 
 when@test:

@@ -5,7 +5,6 @@ namespace App\Controller;
 use DateTime;
 use App\Entity\User;
 use App\Form\UserFormType;
-use App\Form\RegisterFormType;
 use App\Repository\UserRepository;
 use App\Form\ChangePasswordFormType;
 use Symfony\Component\Form\FormError;
@@ -14,6 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 #[Route('/profil')]
 class ProfilController extends AbstractController
@@ -73,40 +73,46 @@ class ProfilController extends AbstractController
     }
 
     #[Route('/changer-mot-de-passe', name: 'change_password', methods: ['GET', 'POST'])]
-    public function changePassword(Request $request,UserRepository $repository, UserPasswordHasherInterface $passwordHasher): Response
+    public function changePassword(Request $request, UserRepository $repository, UserPasswordHasherInterface $passwordHasher): Response
 {
+    //probleme de securité a mettre a jour , UserPasswordEncoderInterface ne fonctionne pas
     // Vérifier si l'utilisateur est connecté
     $user = $this->getUser();
     if (!$user) {
         return $this->redirectToRoute('app_login');
     }
 
-    // Création du formulaire de changement de mot de passe
-    $form = $this->createForm(ChangePasswordFormType::class);
+    // Créer le formulaire de changement de mot de passe
+    $form = $this->createForm(ChangePasswordFormType::class, $user);
+
+    // Traiter la soumission du formulaire
     $form->handleRequest($request);
-
     if ($form->isSubmitted() && $form->isValid()) {
-        // Récupérer le mot de passe actuel entré dans le formulaire
+        // Vérifier que le mot de passe actuel est correct
         $currentPassword = $form->get('current_password')->getData();
-
-        // Vérifier si le mot de passe actuel est correct
         if (!$passwordHasher->isPasswordValid($user, $currentPassword)) {
-            // Si le mot de passe actuel n'est pas correct, ajouter une erreur au formulaire
             $form->get('current_password')->addError(new FormError('Le mot de passe actuel est incorrect.'));
         } else {
-            // Si le mot de passe actuel est correct, changer le mot de passe de l'utilisateur
-            $newPassword = $currentPassword->
-            $user->setPassword($passwordHasher->hashPassword($user, $newPassword));
-            $repository->save($user, true);
-    
-                $this->addFlash('success', 'Votre mot de passe a été modifié avec succès.');
-                return $this->redirectToRoute('show_profil');
-            }
+            // Récupérer le nouveau mot de passe et le hasher
+            $newPassword = $form->get('new_password')->getData();
+            $hashedPassword = $passwordHasher->hashPassword($user, $newPassword);
+             $user->setNewpassword($passwordHasher->hashPassword($user, $user->getNewpassword()));
+
+            // Mettre à jour le mot de passe de l'utilisateur
+            $user->setPassword($hashedPassword);
+            $repository->upgradePassword($user, $hashedPassword);
+
+            $this->addFlash('success', 'Votre mot de passe a été modifié avec succès.');
+            return $this->redirectToRoute('show_profil');
         }
-    
-        return $this->render('profil/change_password.html.twig', [
-            'form' => $form->createView(),
-        ]);
-    }    
+    }
+
+    return $this->render('profil/change_password.html.twig', [
+        'form' => $form->createView(),
+    ]);
+}
+
     
 }
+
+

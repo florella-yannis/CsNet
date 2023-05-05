@@ -32,6 +32,24 @@
 					<li class="nav-item">
 						<a class="nav-link" href="{{path('show_espace_vert')}}">Espace-vert</a>
 					</li>
+					{% if is_granted('ROLE_ADMIN') %}
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								Administrateur
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a class="dropdown-item" href="">Création de devis</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="">Affichage des devis</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="">Gestion des roles</a>
+								</li>
+							</ul>
+						</li>
+					{% endif %}
 					{% if not app.user %}
 						<li class="nav-item">
 							<a class="nav-link" href="{{path('app_register')}}">Inscription</a>
@@ -67,24 +85,6 @@
 						</li>
 					{% endif %}
 
-					{% if is_granted('ROLE_ADMIN') %}
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								Administrateur
-							</a>
-							<ul class="dropdown-menu">
-								<li>
-									<a class="dropdown-item" href="">Création de devis</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="">Affichage des devis</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="">Gestion des roles</a>
-								</li>
-							</ul>
-						</li>
-					{% endif %}
 				</ul>
 			</div>
 		</div>
