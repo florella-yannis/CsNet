@@ -56,6 +56,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 10)]
     private ?string $zipcode = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $newpassword = null;
+
 
     public function getId(): ?int
     {
@@ -219,6 +222,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setZipcode(string $zipcode): self
     {
         $this->zipcode = $zipcode;
+
+        return $this;
+    }
+
+    public function getNewpassword(): ?string
+    {
+        return $this->newpassword;
+    }
+
+    public function setNewpassword(?string $newpassword): self
+    {
+        $this->newpassword = $newpassword;
 
         return $this;
     }
