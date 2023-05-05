@@ -32,8 +32,9 @@
 					<li class="nav-item">
 						<a class="nav-link" href="{{path('show_espace_vert')}}">Espace-vert</a>
 					</li>
-<<<<<<< Updated upstream
-=======
+					<li class="nav-item">
+						<a class="nav-link" href="{{path('show_contact')}}">Contact</a>
+					</li>
 					{% if is_granted('ROLE_ADMIN') %}
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -41,7 +42,7 @@
 							</a>
 							<ul class="dropdown-menu">
 								<li>
-									<a class="dropdown-item" href="">Mes clients</a>
+									<a class="dropdown-item" href="{{path('show_dashboard')}}">Dashboard</a>
 								</li>
 								<li>
 									<a class="dropdown-item" href="">Création de devis</a>
@@ -55,7 +56,6 @@
 							</ul>
 						</li>
 					{% endif %}
->>>>>>> Stashed changes
 					{% if not app.user %}
 						<li class="nav-item">
 							<a class="nav-link" href="{{path('app_register')}}">Inscription</a>
