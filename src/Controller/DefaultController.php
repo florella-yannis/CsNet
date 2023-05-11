@@ -54,4 +54,25 @@ class DefaultController extends AbstractController
             'form' => $form->createView()
             ]);
     }
+
+    // parti du footer
+
+    #[Route('/mentions-legales', name: 'mentions_legales',methods:['GET'])]
+    public function mentionsLegals(): Response
+    {
+        return $this->render('divers/mentions_legales.html.twig');
+    }
+
+    #[Route('/conditions-generales-de-vente', name: 'conditions_generales',methods:['GET'])]
+    public function conditionsGenerales(): Response
+    {
+        return $this->render('divers/conditions_generales.html.twig');
+    }
+
+    #[Route('/plan-du-site', name: 'plan_site',methods:['GET'])]
+    public function planSite(): Response
+    {
+        return $this->render('divers/plan_site.html.twig');
+    }
+
 }
