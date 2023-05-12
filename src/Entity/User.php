@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
@@ -58,6 +60,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $newpassword = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: DemandeDevis::class)]
+    private Collection $demandeDevis;
+
+    public function __construct()
+    {
+        $this->demandeDevis = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -234,6 +244,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setNewpassword(?string $newpassword): self
     {
         $this->newpassword = $newpassword;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, DemandeDevis>
+     */
+    public function getDemandeDevis(): Collection
+    {
+        return $this->demandeDevis;
+    }
+
+    public function addDemandeDevi(DemandeDevis $demandeDevi): self
+    {
+        if (!$this->demandeDevis->contains($demandeDevi)) {
+            $this->demandeDevis->add($demandeDevi);
+            $demandeDevi->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDemandeDevi(DemandeDevis $demandeDevi): self
+    {
+        if ($this->demandeDevis->removeElement($demandeDevi)) {
+            // set the owning side to null (unless already changed)
+            if ($demandeDevi->getUser() === $this) {
+                $demandeDevi->setUser(null);
+            }
+        }
 
         return $this;
     }

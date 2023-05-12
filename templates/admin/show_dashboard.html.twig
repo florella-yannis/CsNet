@@ -1,20 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}CS NET | Dashboard
-{% endblock %}
+{% block title %}CS NET | Dashboard{% endblock %}
 
 {% block body %}
-	<main>
 
 		<div class="row">
+		{% include 'include/_flashes.html.twig' %}
 			<div class="col-10 mx-auto my-4">
-
 				<h2 class="text-center">Mes clients</h2>
-
 				<table class="table">
 					<thead>
 						<tr>
-
 							<th>Nom</th>
 							<th>Prénom</th>
 							<th>raison social</th>
@@ -43,7 +39,7 @@
 								<td>{{ client.email}}</td>
 								<td>{{ client.createdAt| date('d/m/Y') }}</td>
 								<td>
-									<a href="" class="btn btn-warning" title="Modifier ">
+									<a href="" class="btn btn-warning" title="Modifier le statut">
 										<i class="bi bi-pencil-square"></i>
 									</a>
 									<a href="" class="btn btn-danger" title="Supprimer " onclick="return confirm('Cette action supprimera l'utilisateur de la base Voulez-vous continuer ? )">
@@ -60,16 +56,15 @@
 					</tbody>
 				</table>
 			</div>
-			</div>
-			<hr>
-			<hr>
+		</div>
+		<hr>
 
-			<div class="col-10 mx-auto my-4">
+		<div class="col-10 mx-auto my-4">
 			<h2 class="text-center">Mes prospects</h2>
 			<table class="table">
 				<thead>
 					<tr>
-						
+
 						<th>Nom</th>
 						<th>Prénom</th>
 						<th>Email</th>
@@ -97,7 +92,7 @@
 									<i class="bi bi-trash3"></i>
 								</a>
 							</td>
-							
+
 						</tr>
 					{% else %}
 						<tr>
@@ -106,7 +101,59 @@
 					{% endfor %}
 				</tbody>
 			</table>
-</div>
-		
+		</div>
+
+
+		<div class="col-10 mx-auto my-4">
+			<h2 class="text-center">Mes demandes de devis</h2>
+			<table class="table">
+				<thead>
+					<tr>
+
+
+						<th>Nom</th>
+						<th>Prénom</th>
+						<th>Prestation</th>
+						<th>Description</th>
+						<th>Budget</th>
+						<th>Date prévisionnelle</th>
+						<th>Date de demande</th>
+						<th>Numéro de telephone</th>
+						<th>Statut</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					{% for demandeDevis in demandesDevis %}
+						<tr>
+							
+								<td>{{ demandeDevis.user.lastname}}</td>
+								<td>{{ demandeDevis.user.firstname }}</td>
+								<td>{{ demandeDevis.prestation }}</td>
+								<td>{{ demandeDevis.description }}</td>
+								<td>{{ demandeDevis.budget }} €</td>
+								<td>{{ demandeDevis.date | date('d/m/Y') }}</td>
+								<td>{{ demandeDevis.createdAt| date('d/m/Y') }}</td>
+								<td>{{ demandeDevis.user.number}}</td>
+								<td>{{ demandeDevis.statut }}</td>
+							<td>
+								<a href="{{ path('demande_devis_modifier_statut', {'id': demandeDevis.id}) }}" class="btn btn-warning" title="Modifier ">
+									<i class="bi bi-pencil-square"></i>
+								</a>
+								<a href="" class="btn btn-danger" title="Supprimer " onclick="return confirm('Cette action supprimera l'utilisateur de la base Voulez-vous continuer ? )">
+									<i class="bi bi-trash3"></i>
+								</a>
+							</td>
+
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="7" class="bg-warning text-center">Aucun prospects</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
 
 	{% endblock %}

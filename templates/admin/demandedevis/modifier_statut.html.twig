@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CS NET | Modifier le statut {% endblock %}
+
+{% block body %}
+
+
+	<h2>Mise a jour du statut</h2>
+	<div class="row">
+		<div class="col-8 mx-auto">
+			{{form(form)}}
+			</div>
+            <a href="{{path('show_dashboard')}}">Retour</a>
+		</div>
+
+	{% endblock %}

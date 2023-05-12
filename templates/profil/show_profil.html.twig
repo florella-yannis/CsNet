@@ -49,4 +49,56 @@
 	<a href="{{ path('edit_profil', {'id': user.id}) }}" class="btn btn-info" title="Modifier le profil"><i class="bi bi-pencil-square"></i></a>
 </div>
 
+{# affichage de demande de devis #}
+
+<div class="col-10 mx-auto my-4">
+
+				<h2 class="text-center">Mes demandes de devis</h2>
+
+				<table class="table">
+					<thead>
+						<tr>
+
+							
+							<th>Prestation</th>
+							<th>Description</th>
+							<th>Budget</th>
+							<th>Date prévisionnelle</th>
+							<th>Date de demande</th>
+							<th>Statut</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						{% for demandeDevis in demandesDevis %}
+							<tr>
+								
+								<td>{{ demandeDevis.prestation }}</td>
+								<td>{{ demandeDevis.description }}</td>
+								<td>{{ demandeDevis.budget }} €</td>
+								<td>{{ demandeDevis.date | date('d/m/Y') }}</td>
+								<td>{{ demandeDevis.createdAt| date('d/m/Y') }}</td>
+								<td>{{ demandeDevis.statut }}</td>
+								<td>
+									<a href="" class="btn btn-warning" title="Modifier ">
+										<i class="bi bi-pencil-square"></i>
+									</a>
+									<a href="" class="btn btn-danger" title="Supprimer " onclick="return confirm('Cette action supprimera l'utilisateur de la base Voulez-vous continuer ? )">
+										<i class="bi bi-trash3"></i>
+									</a>
+								</td>
+
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="7" class="bg-warning text-center">Aucune demande de devis</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+			</div>
+
+
 		{% endblock %}
