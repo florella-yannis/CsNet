@@ -32,6 +32,8 @@ class AdminController extends AbstractController
         ]);
     }
 
+    // modifier la demande de devis
+    
     #[Route('/demande-devis/{id}/modifier-statut', name: 'demande_devis_modifier_statut', methods: ['GET', 'POST'])]
     public function modifierStatut(DemandeDevis $demandeDevis, Request $request, DemandeDevisRepository $repository, EntityManagerInterface $entityManager): Response
     {

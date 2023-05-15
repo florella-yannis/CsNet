@@ -8,10 +8,10 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class DemandeDevisFormType extends AbstractType
@@ -42,8 +42,9 @@ class DemandeDevisFormType extends AbstractType
                     ])
                 ]
             ])
-            ->add('budget', IntegerType::class, [
+            ->add('budget', MoneyType::class, [
                 'label'=>"Buget estimé",
+                'currency' => 'EUR',
                 'constraints' => [
                     new NotBlank([
                         'message' =>'Ce champ ne peut etre vide'
@@ -59,7 +60,7 @@ class DemandeDevisFormType extends AbstractType
                     'placeholder' => '€'
                 ]
             ])
-            ->add('date', DateTimeType::class, [
+            ->add('date', DateType::class, [
                 'label'=>"Date d'intervention souhaitée",
                 'widget'=>'single_text',
                 'constraints' => [
