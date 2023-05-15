@@ -29,7 +29,7 @@ class DetailDevisFormType extends AbstractType
                 'label' => 'Quantité',
             ])
                 ->add('Ajouter', SubmitType::class, [
-                    'label' => "Envoyer",
+                    'label' => "Ajouter un service",
                     'validate' => false,
                     'attr' => [
                         'class' => 'd-block mx-auto my-3 col-3 btn btn-primary'
