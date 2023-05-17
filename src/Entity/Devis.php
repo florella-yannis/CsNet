@@ -69,9 +69,9 @@ class Devis
         return $this->numberdevis;
     }
 
-    public function setNumberdevis(string $currentYear, int $nextDevisNumber): self
+    public function setNumberdevis(string $numberdevis): self
     {
-        $this->numberdevis = sprintf('N°%d-%03d-%03d', $currentYear, $nextDevisNumber, $this->id);
+        $this->numberdevis = $numberdevis;
 
         return $this;
     }
@@ -213,4 +213,24 @@ class Devis
 
         return $this;
     }
+
+    public function newNumberDevis(): string
+{
+    // Récupérer l'année en cours
+    $year = date('Y');
+
+    // Récupérer l'id du devis
+    $id = $this->getId();
+
+    // Générer le numéro de devis avec le format souhaité
+    $number = sprintf('%s-%03d', $year, $id);
+
+    // Mettre à jour le numéro de devis de l'entité
+    $this->setNumberdevis($number);
+
+    return $number;
+}
+
+    
+
 }

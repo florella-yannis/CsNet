@@ -113,21 +113,6 @@ class DevisFormType extends AbstractType
             ->add('intervention', TextType::class, [
                 'label'=>"Lieu d'intervention"
             ])
-            ->add('detaildevis', CollectionType::class, [
-                'label' => 'Détails du devis',
-                'entry_type' => DetailDevisFormType::class,
-                'entry_options' => [
-                    'label' => false,
-                ],
-                'allow_add' => true,
-                'allow_delete' => true,
-                'prototype' => true,
-                // 'by_reference' => false,
-                'prototype_name' => '__detaildevis_prototype__',
-                'attr' => [
-                    'class' => 'detaildevis-collection',
-                ],
-            ])
             ->add('submit', SubmitType::class, [
                 'label' => "Suivant",
                 'validate' => false,

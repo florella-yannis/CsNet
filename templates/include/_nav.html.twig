@@ -48,10 +48,7 @@
 									<a class="dropdown-item" href="{{ path('create_devis') }}">Création de devis</a>
 								</li>
 								<li>
-									<a class="dropdown-item" href="">Affichage des devis</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="">Gestion des roles</a>
+									<a class="dropdown-item" href="{{ path('show_devis') }}">Affichage des devis</a>
 								</li>
 							</ul>
 						</li>
@@ -72,14 +69,14 @@
 								<li>
 									<a class="dropdown-item" href="{{path('show_profil')}}">Mon profil</a>
 								</li>
-																<li>
+								<li>
 									<a class="dropdown-item" href="{{ path('edit_profil', {'id': app.user.id}) }}">Modifier mes information</a>
 								</li>
 								<li>
 									<a class="dropdown-item" href="{{ path('ask_demande_devis') }}">Demande de devis</a>
 								</li>
 								<li>
-									<a class="dropdown-item" href="">Mes devis</a>
+									{# <a class="dropdown-item" href="{{ path('show_devis_profil') }}">Mes devis</a> #}
 								</li>
 								<li>
 									<a class="dropdown-item" href="{{path('change_password')}}">Modifier mot de passe</a>

@@ -39,26 +39,6 @@ class DevisRepository extends ServiceEntityRepository
         }
     }
 
-    public function getNextDevisNumber($year)
-{
-    $qb = $this->createQueryBuilder('d');
-
-    $qb->select('d.numberdevis')
-        ->where('d.numberdevis LIKE :prefix')
-        ->setParameter('prefix', 'N°' . $year . '-%')
-        ->orderBy('d.numberdevis', 'DESC')
-        ->setMaxResults(1);
-
-    $result = $qb->getQuery()->getOneOrNullResult();
-
-    if (!$result) {
-        return '001';
-    }
-
-    $currentNumber = (int) substr($result['numberdevis'], -3);
-
-    return sprintf('%03d', $currentNumber + 1);
-}
 
 //    /**
 //     * @return Devis[] Returns an array of Devis objects

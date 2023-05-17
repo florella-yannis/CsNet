@@ -40,7 +40,7 @@ class UserController extends AbstractController
 
             $repository->save($user, true);
 
-            $this->addFlash('succes',"Votre inscription a été effectuée avec succès.");
+            $this->addFlash('success',"Votre inscription a été effectuée avec succès.");
             return $this->redirectToRoute('app_login');
         }
 

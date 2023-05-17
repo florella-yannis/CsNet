@@ -44,7 +44,7 @@ class Prospect
         return $this->firstname;
     }
 
-    public function setName(string $firstname): self
+    public function setFirstname(string $firstname): self
     {
         $this->firstname = $firstname;
 

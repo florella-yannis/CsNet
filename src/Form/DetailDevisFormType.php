@@ -5,6 +5,8 @@ namespace App\Form;
 use App\Entity\DetailDevis;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
@@ -18,15 +20,32 @@ class DetailDevisFormType extends AbstractType
         $builder
         ->add('designation', TextType::class, [
             'label' => 'Désignation',
+            'constraints' => [
+                new NotBlank([
+                    'message' =>'Ce champ ne peut etre vide'
+                ]),
+                new Length([
+                    'min' => 2,
+                    'max' => 255,
+                    'minMessage' =>'La désignation dois comporter au minimum {{ limit }} caractères.',
+                    'maxMessage' =>'La désignation doit comporter au maximum {{ limit }} caractères.',
+                ]),
+            ],
             
         ])
             ->add('priceunit', MoneyType::class, [
                 'label' => 'Prix unitaire',
                 'currency' => 'EUR',
+                new NotBlank([
+                    'message' =>'Ce champ ne peut etre vide'
+                ]),
                 
             ])
             ->add('quantity', NumberType::class, [
                 'label' => 'Quantité',
+                new NotBlank([
+                    'message' =>'Ce champ ne peut etre vide'
+                ]),
             ])
                 ->add('Ajouter', SubmitType::class, [
                     'label' => "Ajouter un service",

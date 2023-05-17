@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\DemandeDevis;
+use App\Entity\Devis;
 use DateTime;
 use App\Entity\User;
 use App\Form\UserFormType;
@@ -10,6 +11,7 @@ use App\Repository\UserRepository;
 use App\Form\ChangePasswordFormType;
 use App\Form\DemandeDevisFormType;
 use App\Repository\DemandeDevisRepository;
+use App\Repository\DevisRepository;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -140,7 +142,7 @@ class ProfilController extends AbstractController
 
             $repository->save($demandeDevis, true);
 
-            $this->addFlash('succes', "Votre demande de devis a été pris en compte.");
+            $this->addFlash('success', "Votre demande de devis a été pris en compte.");
             return $this->redirectToRoute('show_profil');
         }
 
@@ -148,4 +150,20 @@ class ProfilController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+    //----------------------------------mes devis --------------------------------//
+
+    // #[Route('/voir-mes-devis', name: 'show_devis_profil', methods: ['GET', 'POST'])]
+    // public function showDevisProfil( User $user, DevisRepository $devisRepository): Response
+    // {
+
+    //     // Récupérer l'utilisateur connecté
+    //     $user = $this->getUser();
+
+    //     $devis = $devisRepository->findBy(['user' => $user]);
+
+    //     return $this->render('profil/show_devis_profil.html.twig', [
+    //         'devis'=>$devis
+    //     ]);
+    // }
 }

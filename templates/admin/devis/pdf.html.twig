@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title></title>
+	</head>
+	<body>
+		<header>
+			<img src="{{asset('images/logo.png')}}" alt="logo">
+		
+		<div>
+			<ul>
+				<li>C.S.NET</li>
+				<li>43 Rue du Chenival</li>
+				<li>43 Rue du Chenival</li>
+				<li>95690 – NESLES LA VALLEE
+				</li>
+				<li>Contact : 06.68.33.87.50
+				</li>
+			</ul>
+
+            <ul>
+            <li>DEVIS VALABLE TROIS MOIS </li>
+            <li>DEVIS : N° {{ devis.numberdevis}}</li>
+            <li>CLIENT : {{devis.client}}</li>
+            </ul>
+</div>
+<div>
+            <ul>
+            <li>{{devis.firstname}}</li>
+            <li>{{devis.lastname}}</li>
+            <li>{{devis.society}}</li>
+            <li>{{devis.adress}}</li>
+            <li>{{devis.zipcode}} à {{devis.city}}</li>
+            </ul>
+
+            <p> Nesles-la-vallée, le '{{devis.date | date('d/m/Y')}}'</p>
+</div>
+		
+        </header>
+		<main>
+        LIEU D'INTERVENTION : {{devis.intervention}}
+        <table class="table">
+		<thead>
+			<tr>
+				<th>Designation</th>
+				<th>Prix unitaire</th>
+				<th>Quantité</th>
+				<th>Prix total</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for service in services %}
+				<tr>
+					<td>{{ service.designation }}</td>
+					<td>{{ service.priceunit }}</td>
+					<td>{{ service.quantity }}</td>
+					<td>{{ service.pricetotal }}</td>
+				</tr>
+			{% endfor %}
+            <tr>
+          <td colspan="3" class="text-right font-weight-bold">Prix final</td>
+          {# <td colspan="2" class="text-left font-weight-bold">{{ finalprice }}</td> #}
+        </tr> 
+		</tbody>
+
+	</table>
+        <span>TVA non applicable article 293-B-I du code général des impôts</span>
+        <p>Signature précédée de la mention 'Bon pour accord' </p>
+        </main>
+
+		<footer>
+        <ul>
+        <li>C.S.NET</li>
+        <li>43  Rue du Chenival 95690 Nesles-la-vallée</li>
+        <li>TEL : 06.68.33.87.50   E-MAIL : christopher.sedilliere@outlook.fr</li>
+        <li>SIREN : 877 483 107</li>
+        </ul>
+        </footer>
+
+	</body>
+</html>

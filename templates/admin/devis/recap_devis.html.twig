@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Confirmation de devis
+{% endblock %}
+
+{% block body %}
+
+		<div class="row">
+			<div class="col-10 mx-auto my-4">
+	<h2>Confirmation de devis</h2>
+
+	
+	<table class="table">
+		<tr>
+			<th>Client</th>
+			<td>{{ devis.client }}</td>
+		</tr>
+        <tr>
+			<th>Nom</th>
+			<td>{{ devis.lastname }}</td>
+		</tr>
+        <tr>
+			<th>Prénom</th>
+			<td>{{ devis.firstname }}</td>
+		</tr>
+        <tr>
+			<th>Entreprise</th>
+			<td>{{ devis.society }}</td>
+		</tr>
+        <tr>
+			<th>Adresse</th>
+			<td>{{ devis.adress }}</td>
+		</tr>
+        <tr>
+			<th>Code postal</th>
+			<td>{{ devis.zipcode }}</td>
+		</tr>
+        <tr>
+			<th>Ville</th>
+			<td>{{ devis.city }}</td>
+		</tr>
+        <tr>
+			<th>Intervention</th>
+			<td>{{ devis.intervention }}</td>
+		</tr>
+		<tr>
+			<th>Date</th>
+			<td>{{ devis.date|date('d/m/Y') }}</td>
+		</tr>
+	</table>
+
+	<h3>Services</h3>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Designation</th>
+				<th>Prix unitaire</th>
+				<th>Quantité</th>
+				<th>Prix total</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for service in services %}
+				<tr>
+					<td>{{ service.designation }}</td>
+					<td>{{ service.priceunit }}</td>
+					<td>{{ service.quantity }}</td>
+					<td>{{ service.pricetotal }}</td>
+				</tr>
+			{% endfor %}
+            <tr>
+          <td colspan="3" class="text-right font-weight-bold">Prix final</td>
+          <td colspan="2" class="text-left font-weight-bold">{{ finalprice }}</td>
+        </tr> 
+		</tbody>
+
+	</table>
+    </div>
+    <a href="{{ path('app_devis_pdf', {'id': devis.id}) }}" class="btn btn-primary">Générer PDF</a>
+    </div>
+{% endblock %}

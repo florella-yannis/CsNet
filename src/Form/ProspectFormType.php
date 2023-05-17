@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\Prospect;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -20,22 +22,46 @@ class ProspectFormType extends AbstractType
             ->add('firstname', TextType::class, [
                 'label'=>"Prénom",
                 'constraints' => [
-                    new NotBlank(),
-                ]
+                    new NotBlank([
+                        'message' =>'Ce champ ne peut etre vide'
+                    ]),
+                    new Length([
+                        'min' => 1,
+                        'max' => 50,
+                        'minMessage' =>'Ce champ doit comporter au minimum {{ limit }} caractères.',
+                        'maxMessage' =>'Ce champ doit comporter au maximum {{ limit }} caractères.',
+                    ]),
+                ],
             ])
             ->add('lastname', TextType::class, [
                 'label' => "Nom",
                 'constraints' => [
-                    new NotBlank(),
-                ]
+                    new NotBlank([
+                        'message' =>'Ce champ ne peut etre vide'
+                    ]),
+                    new Length([
+                        'min' => 1,
+                        'max' => 50,
+                        'minMessage' =>'Ce champ doit comporter au minimum {{ limit }} caractères.',
+                        'maxMessage' =>'Ce champ doit comporter au maximum {{ limit }} caractères.',
+                    ]),
+                ],
             ])
-            ->add('email', TextType::class, [
+            ->add('email', EmailType::class, [
                 'label' => "Email",
                 'constraints' => [
-                    new NotBlank(),
-                ]
+                    new NotBlank([
+                        'message' =>'Ce champ ne peut etre vide'
+                    ]),
+                    new Length([
+                        'min' => 1,
+                        'max' => 50,
+                        'minMessage' =>'Ce champ doit comporter au minimum {{ limit }} caractères.',
+                        'maxMessage' =>'Ce champ doit comporter au maximum {{ limit }} caractères.',
+                    ]),
+                ],
             ])
-            ->add('number', TextType::class, [
+            ->add('number', NumberType::class, [
                 'label' => "Numéro de téléphone",
                 'constraints' => [
                     new NotBlank(),

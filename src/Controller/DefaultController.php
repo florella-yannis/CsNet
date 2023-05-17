@@ -31,7 +31,7 @@ class DefaultController extends AbstractController
         return $this->render('default/show_espace_vert.html.twig');
     }
 
-    #[Route('/contact', name:'show_contact', methods:['GET'])]
+    #[Route('/contact', name:'show_contact', methods:['GET','POST'])]
     public function showContact(Request $request, ProspectRepository $repository): Response
     {
         $prospect = new Prospect();
@@ -46,8 +46,8 @@ class DefaultController extends AbstractController
 
             $repository->save($prospect, true);
 
-            $this->addFlash('succes', "Le produit est en ligne avec succès.");
-            return $this->redirectToRoute('show_dashboard');
+            $this->addFlash('success', "Votre demande a été pris en compte");
+            return $this->redirectToRoute('show_home');
         }
 
         return $this->render('default/show_contact.html.twig', [
