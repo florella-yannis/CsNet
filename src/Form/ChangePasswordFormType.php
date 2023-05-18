@@ -18,7 +18,7 @@ class ChangePasswordFormType extends AbstractType
     {
         $builder
             
-        ->add('current_password', PasswordType::class, [
+        ->add('currentpassword', PasswordType::class, [
             'label'=>"Mot de passe actuel",
             'mapped' => false,
             'constraints' => [
@@ -28,7 +28,7 @@ class ChangePasswordFormType extends AbstractType
                 // Ajouter des contraintes pour valider le mot de passe actuel
             ],
         ])
-        ->add('new_password', RepeatedType::class, [
+        ->add('newpassword', RepeatedType::class, [
             'type' => PasswordType::class,
             'invalid_message' => 'Les mots de passe ne sont pas identiques.',
             'required' => true,

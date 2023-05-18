@@ -21,7 +21,7 @@ class Devis
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 11)]
+    #[ORM\Column(length: 15)]
     private ?string $numberdevis = null;
 
     #[ORM\Column(length: 255)]
@@ -215,22 +215,21 @@ class Devis
     }
 
     public function newNumberDevis(): string
-{
-    // Récupérer l'année en cours
-    $year = date('Y');
-
-    // Récupérer l'id du devis
-    $id = $this->getId();
-
-    // Générer le numéro de devis avec le format souhaité
-    $number = sprintf('%s-%03d', $year, $id);
-
-    // Mettre à jour le numéro de devis de l'entité
-    $this->setNumberdevis($number);
-
-    return $number;
-}
-
+    {
+        // Récupérer l'année en cours
+        $year = date('Y');
     
-
+        // Récupérer l'id du devis
+        $id = $this->getId();
+    
+        // Générer le numéro de devis avec le format souhaité
+        $number = sprintf('%s-%03d', $year, $id);
+    
+        // Mettre à jour le numéro de devis de l'entité
+        $this->setNumberdevis($number);
+    
+        return $number;
+    }
+    
+    
 }

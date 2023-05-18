@@ -20,10 +20,12 @@
 				<th scope="row">Nom :</th>
 				<td>{{ user.lastname }}</td>
 			</tr>
-			<tr>
-				<th scope="row">Entreprise :</th>
-				<td>{{ user.company }}</td>
-			</tr>
+			            {% if user.company is not empty %}
+                <tr>
+                    <th scope="row">Entreprise :</th>
+                    <td>{{ user.company }}</td>
+                </tr>
+            {% endif %}
 			<tr>
 				<th scope="row">Numéro de téléphone :</th>
 				<td>{{ user.number }}</td>

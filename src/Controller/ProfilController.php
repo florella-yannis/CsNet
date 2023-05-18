@@ -80,13 +80,13 @@ class ProfilController extends AbstractController
         ]);
     }
 
-    #[Route('/changer-mot-de-passe', name: 'change_password', methods: ['GET', 'POST'])]
-    public function changePassword(Request $request, UserRepository $repository, UserPasswordHasherInterface $passwordHasher): Response
+    #[Route('/changer-mot-de-passe/{id}', name: 'change_password', methods: ['GET', 'POST'])]
+    public function changePassword(Request $request, User $user, UserRepository $repository, UserPasswordHasherInterface $passwordHasher): Response
     {
         //probleme de securité a mettre a jour , UserPasswordEncoderInterface ne fonctionne
         // Vérifier si l'utilisateur est connecté
-        $user = $this->getUser();
-        if (!$user) {
+        $currentUser = $this->getUser();
+        if (!$currentUser) {
             return $this->redirectToRoute('app_login');
         }
 
@@ -95,19 +95,23 @@ class ProfilController extends AbstractController
 
         // Traiter la soumission du formulaire
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             // Vérifier que le mot de passe actuel est correct
-            $currentPassword = $form->get('current_password')->getData();
+            $currentPassword = $form->get('currentpassword')->getData();
             if (!$passwordHasher->isPasswordValid($user, $currentPassword)) {
-                $form->get('current_password')->addError(new FormError('Le mot de passe actuel est incorrect.'));
+                $form->get('currentpassword')->addError(new FormError('Le mot de passe actuel est incorrect.'));
             } else {
                 // Récupérer le nouveau mot de passe et le hasher
-                $newPassword = $form->get('new_password')->getData();
+                $newPassword = $form->get('newpassword')->getData();
                 $hashedPassword = $passwordHasher->hashPassword($user, $newPassword);
+                // le hash dans newpassword est null
+                $user->setNewpassword(null);
 
                 // Mettre à jour le mot de passe de l'utilisateur
                 $user->setPassword($hashedPassword);
-                $repository->upgradePassword($user, $hashedPassword);
+                
+                $repository->save($user, true);
 
                 $this->addFlash('success', 'Votre mot de passe a été modifié avec succès.');
                 return $this->redirectToRoute('show_profil');

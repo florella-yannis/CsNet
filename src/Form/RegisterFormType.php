@@ -16,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
 
 class RegisterFormType extends AbstractType
 {
@@ -134,14 +135,14 @@ class RegisterFormType extends AbstractType
                 //     ]),
                 // ]
             ])
-            ->add('number', NumberType::class, [
+            ->add('number', TelType::class, [
                 'label' => 'Numéro de téléphone',
                 'constraints' => [
                     new NotBlank([
                         'message' =>'Ce champ ne peut etre vide'
                     ]),
                     new Length([
-                        'min' => 10,
+                        'min' => 9,
                         'max' => 50,
                         'minMessage' =>'Votre numéro de téléphone doit comporter au minimum {{ limit }} caractères.(numéro de téléphone : {{ value }})',
                         'maxMessage' =>'Votre numéro de téléphone doit comporter au maximum {{ limit }} caractères.(numéro de téléphone : {{ value }})',

@@ -16,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
 
 class UserFormType extends AbstractType
 {
@@ -116,7 +117,7 @@ class UserFormType extends AbstractType
                 //     ]),
                 // ]
             ])
-            ->add('number', NumberType::class, [
+            ->add('number', TelType::class, [
                 'label' => 'Numéro de téléphone',
                 'constraints' => [
                     new NotBlank([

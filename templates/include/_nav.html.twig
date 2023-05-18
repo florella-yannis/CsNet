@@ -79,7 +79,7 @@
 									{# <a class="dropdown-item" href="{{ path('show_devis_profil') }}">Mes devis</a> #}
 								</li>
 								<li>
-									<a class="dropdown-item" href="{{path('change_password')}}">Modifier mot de passe</a>
+									<a class="dropdown-item" href="{{path('change_password', {'id': app.user.id}) }}">Modifier mot de passe</a>
 								</li>
 							</ul>
 						</li>

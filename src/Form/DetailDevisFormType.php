@@ -36,16 +36,11 @@ class DetailDevisFormType extends AbstractType
             ->add('priceunit', MoneyType::class, [
                 'label' => 'Prix unitaire',
                 'currency' => 'EUR',
-                new NotBlank([
-                    'message' =>'Ce champ ne peut etre vide'
-                ]),
                 
             ])
             ->add('quantity', NumberType::class, [
                 'label' => 'Quantité',
-                new NotBlank([
-                    'message' =>'Ce champ ne peut etre vide'
-                ]),
+                
             ])
                 ->add('Ajouter', SubmitType::class, [
                     'label' => "Ajouter un service",
