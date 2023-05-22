@@ -24,17 +24,19 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class ProfilController extends AbstractController
 {
     #[Route('/voir-mon-profil', name: 'show_profil', methods: ['GET', 'POST'])]
-    public function showProfil(Request $request, UserRepository $repository, UserPasswordHasherInterface $passwordHasher, DemandeDevisRepository $demandeDevisRepository): Response
+    public function showProfil(Request $request, DevisRepository $devis, DemandeDevisRepository $demandeDevisRepository): Response
     {
 
         // Récupérer l'utilisateur connecté
         $user = $this->getUser();
 
         $demandesDevis = $demandeDevisRepository->findBy(['user' => $user]);
+        $devis = $devis->findBy(['user' => $user]);
 
         return $this->render('profil/show_profil.html.twig', [
             'user' => $user,
             'demandesDevis' => $demandesDevis,
+            'devis'=>$devis
         ]);
     }
 

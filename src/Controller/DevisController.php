@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use DateTime;
 use Dompdf\Dompdf;
+use App\Entity\User;
 use App\Entity\Devis;
 use App\Entity\DetailDevis;
 use App\Form\DevisFormType;
@@ -19,6 +20,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/admin')]
 class DevisController extends AbstractController
 {
+
     #[Route('/creer-un-devis', name: 'create_devis', methods: ['GET', 'POST'])]
     public function createDevis(Request $request, DevisRepository $repository, EntityManagerInterface $entityManager): Response
     {
@@ -33,10 +35,50 @@ class DevisController extends AbstractController
             $devis->setUpdatedAt(new DateTime());
             $devis->newNumberDevis();
 
+            $repository->save($devis, true);
 
-            foreach ($devis->getDetaildevis() as $detailDevis) {
-                $devis->addDetailDevi($detailDevis);
-            }
+            $this->addFlash('success', "Le devis a été realisé avec succes.");
+            return $this->redirectToRoute('create_detail_devis', ['id' => $devis->getId()]);
+        }
+
+
+        return $this->render('admin/devis/form_devis.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/creer-un-devis/{id}', name: 'create_devis_user', methods: ['GET', 'POST'])]
+    public function createDevisUser(Request $request, DevisRepository $repository,User $user, EntityManagerInterface $entityManager): Response
+    {
+        $devis = new Devis();
+
+        $form = $this->createForm(DevisFormType::class, $devis);
+        
+        // $id = $request->attributes->get('id');
+
+        // Récupérer l'utilisateur à partir de l'identifiant
+        // $user = $entityManager->getRepository(User::class)->find($id);
+        
+        // Autres champs à préremplir avec les informations de l'utilisateur
+        $form->get('client')->setData($user->getClient());
+        $form->get('lastname')->setData($user->getLastname());
+        $form->get('firstname')->setData($user->getFirstname());
+        $form->get('society')->setData($user->getCompany());
+        $form->get('adress')->setData($user->getAdress());
+        $form->get('zipcode')->setData($user->getZipcode());
+        $form->get('city')->setData($user->getCity());
+
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $devis->setCreatedAt(new DateTime());
+            $devis->setUpdatedAt(new DateTime());
+            $devis->newNumberDevis();
+
+            $devis->setUser($user);
+
 
             $repository->save($devis, true);
 
@@ -44,8 +86,10 @@ class DevisController extends AbstractController
             return $this->redirectToRoute('create_detail_devis', ['id' => $devis->getId()]);
         }
 
+
         return $this->render('admin/devis/form_devis.html.twig', [
             'form' => $form->createView(),
+            'user' => $user
         ]);
     }
 
@@ -63,6 +107,11 @@ class DevisController extends AbstractController
             // Stockez les données du formulaire de devis dans la session
             $request->getSession()->set('devis', $devis);
 
+            foreach ($devis->getDetaildevis() as $detailDevis) {
+                $devis->addDetailDevi($detailDevis);
+            }
+
+            $devis->newNumberDevis();
             $detailDevis->setDevis($devis);
             $detailDevis->updateFinalPrice();
             $repository->save($detailDevis, true);
@@ -133,22 +182,10 @@ class DevisController extends AbstractController
         ]);
     }
 
-    //----------------------------------------show l'ensemble des devis -----------------------------------------//
-
-    #[Route('/voir-mes-devis', name: 'show_devis', methods: ['GET', 'POST'])]
-    public function showClients(EntityManagerInterface $entityManager, DevisRepository $demandeDevisRepository): Response
-    {
-        $devis= $entityManager->getRepository(Devis::class)->findAll();
-
-        return $this->render('admin/devis/show_devis.html.twig', [
-            'devis' => $devis,
-        ]);
-    }
-
     //----------------------------------------Creation du pdf-----------------------------------------//
 
     #[Route('/{id}/pdf', name: 'app_devis_pdf',  methods: ['GET'])]
-    public function createPdf(Request $request, Devis $devis, DevisRepository $devisRepository,EntityManagerInterface $entityManager): Response
+    public function createPdf(Request $request, Devis $devis, DevisRepository $devisRepository, EntityManagerInterface $entityManager): Response
     {
         $dompdf = new Dompdf();
 
@@ -157,13 +194,13 @@ class DevisController extends AbstractController
         // // Récupérez le devis à partir de l'identifiant
         // $devis = $devisRepository->find($id);
 
-        
+
 
         $services = $entityManager->getRepository(DetailDevis::class)->findBy(['devis' => $devis]);
 
         $html = $this->renderView('admin/devis/pdf.html.twig', [
             'devis' => $devis,
-            'services'=>$services
+            'services' => $services
         ]);
 
         //  dd($html);
@@ -182,4 +219,16 @@ class DevisController extends AbstractController
 
         return $this->redirectToRoute('recap_devis', ['id' => $devis->getId()]);
     }
+
+        //----------------------------------------show l'ensemble des devis -----------------------------------------//
+
+        #[Route('/voir-mes-devis', name: 'show_devis', methods: ['GET', 'POST'])]
+        public function showClients(EntityManagerInterface $entityManager, DevisRepository $demandeDevisRepository): Response
+        {
+            $devis = $entityManager->getRepository(Devis::class)->findAll();
+    
+            return $this->render('admin/devis/show_devis.html.twig', [
+                'devis' => $devis,
+            ]);
+        }
 }

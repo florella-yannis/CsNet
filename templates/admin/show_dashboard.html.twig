@@ -39,7 +39,7 @@
 								<td>{{ client.email}}</td>
 								<td>{{ client.createdAt| date('d/m/Y') }}</td>
 								<td>
-								<a href="" class="btn btn-info" title="Créer un devis">
+								<a href="{{ path('create_devis_user', {'id': client.id}) }}" class="btn btn-info" title="Créer un devis">
 										<i class="bi bi-clipboard-plus"></i>
 									</a>
 									<a href="" class="btn btn-warning" title="Modifier le statut">

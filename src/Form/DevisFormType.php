@@ -99,17 +99,7 @@ class DevisFormType extends AbstractType
                     new NotBlank([
                         'message' =>'Ce champ ne peut etre vide'
                     ])]
-                
-            ])
-            ->add('date', DateType::class, [
-                'label'=>"Date création devis",
-                'widget'=>'single_text',
-                'constraints' => [
-                    new NotBlank([
-                        'message' =>'Ce champ ne peut etre vide'
-                    ])
-                ]
-            ])
+                ])
             ->add('intervention', TextType::class, [
                 'label'=>"Lieu d'intervention"
             ])

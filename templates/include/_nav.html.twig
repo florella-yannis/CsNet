@@ -1,26 +1,29 @@
 <header>
 	{# <nav>
-				<div class="logo">
-					<img src="{{asset('images/logo.png')}}" alt="logo-cs-net" width="50" height="50">
-		        	<span><a href="#"> CS NET</a></span>
-				</div>
-		        <ul id="nav-links">
-		            <li><a href="#presentation">Présentation</a></li>
-		            <li><a href="#histoire">Histoire</a></li>
-		            <li><a href="#competences">Compétences</a></li>
-		            <li><a href="#projets">Projets</a></li>
-		            <li><a href="#contact">Contact</a></li>
-		            <li><a href="#contact">S'inscrire</a></li>
-		            <li><a href="#contact">Se connecter</a></li>
-		        </ul>
-		        <i class="fa-solid fa-bars"></i>
-		    </nav> #}
+					<div class="logo">
+						<img src="{{asset('images/logo.png')}}" alt="logo-cs-net" width="50" height="50">
+			        	<span><a href="#"> CS NET</a></span>
+					</div>
+			        <ul id="nav-links">
+			            <li><a href="#presentation">Présentation</a></li>
+			            <li><a href="#histoire">Histoire</a></li>
+			            <li><a href="#competences">Compétences</a></li>
+			            <li><a href="#projets">Projets</a></li>
+			            <li><a href="#contact">Contact</a></li>
+			            <li><a href="#contact">S'inscrire</a></li>
+			            <li><a href="#contact">Se connecter</a></li>
+			        </ul>
+			        <i class="fa-solid fa-bars"></i>
+			    </nav> #}
 
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="{{path('show_home')}}"><img src="{{asset('images/logo.png')}}" alt="logo-cs-net" width="50" height="50">
 				CS NET</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item">
@@ -59,6 +62,7 @@
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="{{path('app_login')}}">Connexion</a>
+
 						</li>
 					{% else %}
 						<li class="nav-item dropdown">

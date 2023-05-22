@@ -45,14 +45,15 @@ class Devis
     #[ORM\Column(length: 100)]
     private ?string $city = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $date = null;
 
     #[ORM\Column(length: 255)]
     private ?string $intervention = null;
 
     #[ORM\OneToMany(mappedBy: 'devis', targetEntity: DetailDevis::class)]
     private Collection $detaildevis;
+
+    #[ORM\ManyToOne(inversedBy: 'devis')]
+    private ?User $user = null;
 
     public function __construct()
     {
@@ -160,17 +161,6 @@ class Devis
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
-    {
-        return $this->date;
-    }
-
-    public function setDate(\DateTimeInterface $date): self
-    {
-        $this->date = $date;
-
-        return $this;
-    }
 
     public function getIntervention(): ?string
     {
@@ -223,12 +213,24 @@ class Devis
         $id = $this->getId();
     
         // Générer le numéro de devis avec le format souhaité
-        $number = sprintf('%s-%03d', $year, $id);
+        $number = sprintf('%s-%03d-%03d', $year, 0, $id);
     
         // Mettre à jour le numéro de devis de l'entité
         $this->setNumberdevis($number);
     
         return $number;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
     }
     
     

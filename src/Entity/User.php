@@ -55,7 +55,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $adress = null;
 
-    #[ORM\Column(length: 10)]
+    #[ORM\Column(length: 5)]
     private ?string $zipcode = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -64,9 +64,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: DemandeDevis::class)]
     private Collection $demandeDevis;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Devis::class)]
+    private Collection $devis;
+
     public function __construct()
     {
         $this->demandeDevis = new ArrayCollection();
+        $this->devis = new ArrayCollection();
     }
 
 
@@ -278,4 +282,44 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    /**
+     * @return Collection<int, Devis>
+     */
+    public function getDevis(): Collection
+    {
+        return $this->devis;
+    }
+
+    public function addDevi(Devis $devi): self
+    {
+        if (!$this->devis->contains($devi)) {
+            $this->devis->add($devi);
+            $devi->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDevi(Devis $devi): self
+    {
+        if ($this->devis->removeElement($devi)) {
+            // set the owning side to null (unless already changed)
+            if ($devi->getUser() === $this) {
+                $devi->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getClient(): string
+    {
+        if ($this->getSocialReason() === 'particulier') {
+            return $this->getLastName() . ' ' . $this->getFirstName();
+        } elseif ($this->getSocialReason() === 'entreprise') {
+            return $this->getCompany();
+        }
+
+        return $this;
+    }
 }
