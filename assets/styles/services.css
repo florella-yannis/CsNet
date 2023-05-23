@@ -1,0 +1,44 @@
+.service{
+    width: 100%;
+    height: 180px;
+}
+
+.herocontact,
+.heroentretien,
+.herospace {
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.herospace {
+    background-image: url(../../public/images/herospacee.jpg);
+}
+
+.herocontact {
+    background-image: url(../../public/images/herocontact.jpg);
+}
+
+.heroentretien {
+    background-image: url(../../public/images/heroentretien.jpg);
+}
+
+
+.img-s3{
+    width: 40%;
+    background-image: url(../../public/images/images3.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.img-s4{
+    width: 40%;
+    background-image: url(../../public/images/images4.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}

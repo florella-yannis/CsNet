@@ -4,14 +4,9 @@
 
 {% block body %}
 
-    <div class="row">
-        <div class="col-6 mx-auto">
-            {% include 'include/_flashes.html.twig' %}
-        </div>
-    </div>
 
     <div class="row">
-
+{% include 'include/_flashes.html.twig' %}
         <h1 class="text-center my-4"> Connectez-vous</h1>
         <div class="col-4 mt-4 mx-auto">
 
@@ -41,13 +36,14 @@
                 {#
                 Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
                 See https://symfony.com/doc/current/security/remember_me.html
-
-                <div class="checkbox mb-3">
+#}
+                <div class="checkbox m-3">
                     <label>
                         <input type="checkbox" name="_remember_me"> Remember me
                     </label>
+                    <a href="">Mot de passe oublié ?</a>
                 </div>
-                #}
+                
 
                 <button class="d-block col-5 mx-auto my-4 btn btn-success" type="submit">Se connecter</button>
             </form>

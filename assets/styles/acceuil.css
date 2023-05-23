@@ -72,7 +72,10 @@ header nav ul li a:hover::after{
     top: 27px;
 } */
 
-
+header .nav-link:hover{
+    color: #62E1B6 !important;
+    }
+    
 /**********section1*****************/
 
 .section1{
@@ -122,6 +125,9 @@ header nav ul li a:hover::after{
     flex-direction: column;
     align-items: center;
 }
+.section2>h2{
+    margin: 70px 0;
+}
 .section2 .container{
     display: flex;
     margin: 50px 0;
@@ -133,6 +139,7 @@ width: 60%;
 }
 .section2 .container .text-s2 p{
     margin: 10px 20px;
+    line-height: 1.7rem;
     }
 .section2 .container .img-s2{
     width: 40%;

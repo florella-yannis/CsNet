@@ -1,162 +1,174 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}CS NET | Dashboard{% endblock %}
+{% block title %}CS NET | Dashboard
+{% endblock %}
 
 {% block body %}
 
-		<div class="row">
+	<div class="row">
 		{% include 'include/_flashes.html.twig' %}
-			<div class="col-10 mx-auto my-4">
-				<h2 class="text-center">Mes clients</h2>
-				<table class="table">
-					<thead>
-						<tr>
-							<th>Nom</th>
-							<th>Prénom</th>
-							<th>raison social</th>
-							<th>entreprise</th>
-							<th>Numero de téléphone</th>
-							<th>Adresse</th>
-							<th>ville</th>
-							<th>Code Postal</th>
-							<th>Email</th>
-							<th>Date d'inscription</th>
-							<th>Action</th>
-						</tr>
-					</thead>
+		<div class="col-10 mx-auto my-4">
 
-					<tbody>
-						{% for client in clients %}
+			<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+				<li class="nav-item" role="presentation">
+					<button class="nav-link active" id="pills-clients-tab" data-bs-toggle="pill" data-bs-target="#pills-clients" type="button" role="tab" aria-controls="pills-clients" aria-selected="true">Clients</button>
+				</li>
+				<li class="nav-item" role="presentation">
+					<button class="nav-link" id="pills-prospects-tab" data-bs-toggle="pill" data-bs-target="#pills-prospects" type="button" role="tab" aria-controls="pills-prospects" aria-selected="false">Mes Prospects</button>
+				</li>
+				<li class="nav-item" role="presentation">
+					<button class="nav-link" id="pills-devis-tab" data-bs-toggle="pill" data-bs-target="#pills-devis" type="button" role="tab" aria-controls="pills-devis" aria-selected="false">Mes demandes de devis</button>
+				</li>
+			</ul>
+			<div class="tab-content" id="pills-tabContent">
+				{# /////////////////////////// Table client /////////////////////////////////#}
+				<div class="tab-pane fade show active" id="pills-clients" role="tabpanel" aria-labelledby="pills-clients-tab">
+					<h2 class="text-center">Mes clients</h2>
+					<table class="table">
+						<thead>
 							<tr>
-								<td>{{ client.firstname }}</td>
-								<td>{{ client.lastname }}</td>
-								<td>{{ client.socialreason }}</td>
-								<td>{{ client.company }}</td>
-								<td>{{ client.number}}</td>
-								<td>{{ client.adress}}</td>
-								<td>{{ client.city}}</td>
-								<td>{{ client.zipcode}}</td>
-								<td>{{ client.email}}</td>
-								<td>{{ client.createdAt| date('d/m/Y') }}</td>
-								<td>
-								<a href="{{ path('create_devis_user', {'id': client.id}) }}" class="btn btn-info" title="Créer un devis">
-										<i class="bi bi-clipboard-plus"></i>
-									</a>
-									<a href="" class="btn btn-warning" title="Modifier le statut">
-										<i class="bi bi-pencil-square"></i>
-									</a>
-									<a href="" class="btn btn-danger" title="Supprimer " onclick="return confirm('Cette action supprimera l'utilisateur de la base Voulez-vous continuer ? )">
-										<i class="bi bi-trash3"></i>
-									</a>
-								</td>
+								<th>Nom</th>
+								<th>Prénom</th>
+								<th>raison social</th>
+								<th>entreprise</th>
+								<th>Numero de téléphone</th>
+								<th>Adresse</th>
+								<th>ville</th>
+								<th>Code Postal</th>
+								<th>Email</th>
+								<th>Date d'inscription</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for client in clients %}
+								<tr>
+									<td>{{ client.firstname }}</td>
+									<td>{{ client.lastname }}</td>
+									<td>{{ client.socialreason }}</td>
+									<td>{{ client.company }}</td>
+									<td>{{ client.number}}</td>
+									<td>{{ client.adress}}</td>
+									<td>{{ client.city}}</td>
+									<td>{{ client.zipcode}}</td>
+									<td>{{ client.email}}</td>
+									<td>{{ client.createdAt| date('d/m/Y') }}</td>
+									<td>
+										<a href="{{ path('create_devis_user', {'id': client.id}) }}" class="btn btn-info" title="Créer un devis">
+											<i class="bi bi-clipboard-plus"></i>
+										</a>
+										<a href="" class="btn btn-warning" title="Modifier le statut">
+											<i class="bi bi-pencil-square"></i>
+										</a>
+										<a href="" class="btn btn-danger" title="Supprimer " onclick="return confirm('Cette action supprimera l'utilisateur de la base Voulez-vous continuer ? )">
+											<i class="bi bi-trash3"></i>
+										</a>
+									</td>
+								</tr>
+							{% else %}
+								<tr>
+									<td colspan="7" class="bg-warning text-center">Aucun utilisateur</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			
 
-							</tr>
-						{% else %}
+			{# /////////////////////////// Table prospects /////////////////////////////////#}
+			<div class="tab-pane fade" id="pills-prospects" role="tabpanel" aria-labelledby="pills-prospects-tab">
+				<div class="col-10 mx-auto my-4">
+					<h2 class="text-center">Mes prospects</h2>
+					<table class="table">
+						<thead>
 							<tr>
-								<td colspan="7" class="bg-warning text-center">Aucun utilisateur</td>
+								<th>Nom</th>
+								<th>Prénom</th>
+								<th>Email</th>
+								<th>Numéro de téléphone</th>
+								<th>Message</th>
+								<th>Date de la demande</th>
+								<th>Action</th>
 							</tr>
-						{% endfor %}
-					</tbody>
-				</table>
+						</thead>
+						<tbody>
+							{% for prospect in prospects %}
+								<tr>
+									<td>{{ prospect.lastname }}</td>
+									<td>{{ prospect.firstname }}</td>
+									<td>{{ prospect.email }}</td>
+									<td>{{ prospect.number }}</td>
+									<td>{{ prospect.message }}</td>
+									<td>{{ prospect.createdAt| date('d/m/Y') }}</td>
+									<td>
+										<a href="" class="btn btn-warning" title="Modifier ">
+											<i class="bi bi-pencil-square"></i>
+										</a>
+										<a href="" class="btn btn-danger" title="Supprimer " onclick="return confirm('Cette action supprimera l'utilisateur de la base Voulez-vous continuer ? )">
+											<i class="bi bi-trash3"></i>
+										</a>
+									</td>
+								</tr>
+							{% else %}
+								<tr>
+									<td colspan="7" class="bg-warning text-center">Aucun prospects</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
 			</div>
-		</div>
-		<hr>
 
-		<div class="col-10 mx-auto my-4">
-			<h2 class="text-center">Mes prospects</h2>
-			<table class="table">
-				<thead>
-					<tr>
-
-						<th>Nom</th>
-						<th>Prénom</th>
-						<th>Email</th>
-						<th>Numéro de téléphone</th>
-						<th>Message</th>
-						<th>Date de la demande</th>
-						<th>Action</th>
-					</tr>
-				</thead>
-
-				<tbody>
-					{% for prospect in prospects %}
-						<tr>
-							<td>{{ prospect.lastname }}</td>
-							<td>{{ prospect.firstname }}</td>
-							<td>{{ prospect.email }}</td>
-							<td>{{ prospect.number }}</td>
-							<td>{{ prospect.message }}</td>
-							<td>{{ prospect.createdAt| date('d/m/Y') }}</td>
-							<td>
-								<a href="" class="btn btn-warning" title="Modifier ">
-									<i class="bi bi-pencil-square"></i>
-								</a>
-								<a href="" class="btn btn-danger" title="Supprimer " onclick="return confirm('Cette action supprimera l'utilisateur de la base Voulez-vous continuer ? )">
-									<i class="bi bi-trash3"></i>
-								</a>
-							</td>
-
-						</tr>
-					{% else %}
-						<tr>
-							<td colspan="7" class="bg-warning text-center">Aucun prospects</td>
-						</tr>
-					{% endfor %}
-				</tbody>
-			</table>
-		</div>
-
-
-		<div class="col-10 mx-auto my-4">
-			<h2 class="text-center">Mes demandes de devis</h2>
-			<table class="table">
-				<thead>
-					<tr>
-
-
-						<th>Nom</th>
-						<th>Prénom</th>
-						<th>Prestation</th>
-						<th>Description</th>
-						<th>Budget</th>
-						<th>Date prévisionnelle</th>
-						<th>Date de demande</th>
-						<th>Numéro de telephone</th>
-						<th>Statut</th>
-						<th>Action</th>
-					</tr>
-				</thead>
-
-				<tbody>
-					{% for demandeDevis in demandesDevis %}
-						<tr>
-							
-								<td>{{ demandeDevis.user.lastname}}</td>
-								<td>{{ demandeDevis.user.firstname }}</td>
-								<td>{{ demandeDevis.prestation }}</td>
-								<td>{{ demandeDevis.description }}</td>
-								<td>{{ demandeDevis.budget }} €</td>
-								<td>{{ demandeDevis.date | date('d/m/Y') }}</td>
-								<td>{{ demandeDevis.createdAt| date('d/m/Y') }}</td>
-								<td>{{ demandeDevis.user.number}}</td>
-								<td>{{ demandeDevis.statut }}</td>
-							<td>
-								<a href="{{ path('demande_devis_modifier_statut', {'id': demandeDevis.id}) }}" class="btn btn-warning" title="Modifier ">
-									<i class="bi bi-pencil-square"></i>
-								</a>
-								<a href="" class="btn btn-danger" title="Supprimer " onclick="return confirm('Cette action supprimera l'utilisateur de la base Voulez-vous continuer ? )">
-									<i class="bi bi-trash3"></i>
-								</a>
-							</td>
-
-						</tr>
-					{% else %}
-						<tr>
-							<td colspan="7" class="bg-warning text-center">Aucun prospects</td>
-						</tr>
-					{% endfor %}
-				</tbody>
-			</table>
+			{# /////////////////////////// Table devis /////////////////////////////////#}
+			<div class="tab-pane fade" id="pills-devis" role="tabpanel" aria-labelledby="pills-devis-tab">
+				<div class="col-10 mx-auto my-4">
+					<h2 class="text-center">Mes demandes de devis</h2>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Nom</th>
+								<th>Prénom</th>
+								<th>Prestation</th>
+								<th>Description</th>
+								<th>Budget</th>
+								<th>Date prévisionnelle</th>
+								<th>Date de demande</th>
+								<th>Numéro de telephone</th>
+								<th>Statut</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for demandeDevis in demandesDevis %}
+								<tr>
+									<td>{{ demandeDevis.user.lastname}}</td>
+									<td>{{ demandeDevis.user.firstname }}</td>
+									<td>{{ demandeDevis.prestation }}</td>
+									<td>{{ demandeDevis.description }}</td>
+									<td>{{ demandeDevis.budget }}
+										€</td>
+									<td>{{ demandeDevis.date | date('d/m/Y') }}</td>
+									<td>{{ demandeDevis.createdAt| date('d/m/Y') }}</td>
+									<td>{{ demandeDevis.user.number}}</td>
+									<td>{{ demandeDevis.statut }}</td>
+									<td>
+										<a href="{{ path('demande_devis_modifier_statut', {'id': demandeDevis.id}) }}" class="btn btn-warning" title="Modifier ">
+											<i class="bi bi-pencil-square"></i>
+										</a>
+										<a href="" class="btn btn-danger" title="Supprimer " onclick="return confirm('Cette action supprimera l'utilisateur de la base Voulez-vous continuer ? )">
+											<i class="bi bi-trash3"></i>
+										</a>
+									</td>
+								</tr>
+							{% else %}
+								<tr>
+									<td colspan="7" class="bg-warning text-center">Aucun prospects</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
 
 	{% endblock %}

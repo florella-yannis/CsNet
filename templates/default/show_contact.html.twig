@@ -5,11 +5,34 @@
 
 {% block body %}
 
-
-	<h2>Contact</h2>
+<div class="service">
+			<div class="herocontact">
+				<h1>Contact</h1>
+			</div>
+		</div>
+	
 	<div class="row">
 		<div class="col-8 mx-auto">
-			{{form(form)}}
+			<h2>Nous Contacter</h2>
+			<p>Pour tout renseignement ou demande de devis, n'hésitez pas à nous contacter via ce formulaire ou bien en nous appelant directement par téléphone. Pour toute demande effectuée par le site nous vous répondrons dans un délais maximum de 48h.</p>
+			<div class="row">
+					{{form_start(form)}}
+					<div class="row">
+						<div class="col-6">{{form_row(form.firstname)}}</div>
+						<div class="col-6">{{form_row(form.lastname)}}</div>
+					</div>
+					<div class="row">
+						<div class="col-6">{{form_row(form.email)}}</div>
+						<div class="col-6">{{form_row(form.number)}}</div>
+					</div>
+					<div class="row">
+						<div>{{form_row(form.message)}}</div>
+					</div>
+					<div class="row">
+						{{form_row(form.submit)}}
+					</div>
+					{{form_end(form)}}
+				</div>
 			</div>
 		</div>
 

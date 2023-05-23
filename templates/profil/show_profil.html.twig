@@ -8,142 +8,161 @@
 
 	{% include 'include/_flashes.html.twig' %}
 
-	<div class="container">
-		<h2 class="text-center">Mes informations</h2>
-		<table class="table">
-			<tbody>
-				<tr>
-					<th scope="row">Prénom :</th>
-					<td>{{ user.firstname }}</td>
-				</tr>
-				<tr>
-					<th scope="row">Nom :</th>
-					<td>{{ user.lastname }}</td>
-				</tr>
-				{% if user.company is not empty %}
-					<tr>
-						<th scope="row">Entreprise :</th>
-						<td>{{ user.company }}</td>
-					</tr>
-				{% endif %}
-				<tr>
-					<th scope="row">Numéro de téléphone :</th>
-					<td>{{ user.number }}</td>
-				</tr>
-				<tr>
-					<th scope="row">Adresse :</th>
-					<td>{{ user.adress }}</td>
-				</tr>
-				<tr>
-					<th scope="row">Ville :</th>
-					<td>{{ user.city }}</td>
-				</tr>
-				<tr>
-					<th scope="row">Code postal :</th>
-					<td>{{ user.zipcode }}</td>
-				</tr>
-				<tr>
-					<th scope="row">Email :</th>
-					<td>{{ user.email }}</td>
-				</tr>
-			</tbody>
-		</table>
-		<a href="{{ path('edit_profil', {'id': user.id}) }}" class="btn btn-info" title="Modifier le profil">
-			<i class="bi bi-pencil-square"></i>
-		</a>
-	</div>
-
-	{# affichage de demande de devis #}
-
 	<div class="col-10 mx-auto my-4">
 
-		<h2 class="text-center">Mes demandes de devis</h2>
+		<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+			<li class="nav-item" role="presentation">
+				<button class="nav-link active" id="pills-info-tab" data-bs-toggle="pill" data-bs-target="#pills-info" type="button" role="tab" aria-controls="pills-info" aria-selected="true">Mes informations</button>
+			</li>
+			<li class="nav-item" role="presentation">
+				<button class="nav-link" id="pills-prospects-ddevis" data-bs-toggle="pill" data-bs-target="#pills-ddevis" type="button" role="tab" aria-controls="pills-ddevis" aria-selected="false">Mes demandes de devis</button>
+			</li>
+			<li class="nav-item" role="presentation">
+				<button class="nav-link" id="pills-devis-tab" data-bs-toggle="pill" data-bs-target="#pills-devis" type="button" role="tab" aria-controls="pills-devis" aria-selected="false">Mes devis</button>
+			</li>
+		</ul>
+		<div class="tab-content" id="pills-tabContent">
+			{# /////////////////////////// Table information /////////////////////////////////#}
+			<div class="tab-pane fade show active" id="pills-info" role="tabpanel" aria-labelledby="pills-info-tab">
 
-		<div class="table-responsive">
-			<table class="table">
-				<thead>
-					<tr>
-
-
-						<th>Prestation</th>
-						<th>Description</th>
-						<th>Budget</th>
-						<th>Date prévisionnelle</th>
-						<th>Date de demande</th>
-						<th>Statut</th>
-						<th>Action</th>
-					</tr>
-				</thead>
-
-				<tbody>
-					{% for demandeDevis in demandesDevis %}
+				<h2 class="text-center">Mes informations</h2>
+				<table class="table">
+					<tbody>
 						<tr>
-
-							<td>{{ demandeDevis.prestation }}</td>
-							<td>{{ demandeDevis.description }}</td>
-							<td>{{ demandeDevis.budget }}
-								€</td>
-							<td>{{ demandeDevis.date | date('d/m/Y') }}</td>
-							<td>{{ demandeDevis.createdAt| date('d/m/Y') }}</td>
-							<td>{{ demandeDevis.statut }}</td>
-							<td>
-								<a href="" class="btn btn-warning" title="Modifier ">
-									<i class="bi bi-pencil-square"></i>
-								</a>
-								<a href="" class="btn btn-danger" title="Supprimer " onclick="return confirm('Cette action supprimera l'utilisateur de la base Voulez-vous continuer ? )">
-									<i class="bi bi-trash3"></i>
-								</a>
-							</td>
-
+							<th scope="row">Prénom :</th>
+							<td>{{ user.firstname }}</td>
 						</tr>
-					{% else %}
 						<tr>
-							<td colspan="7" class="bg-warning text-center">Aucune demande de devis</td>
+							<th scope="row">Nom :</th>
+							<td>{{ user.lastname }}</td>
 						</tr>
-					{% endfor %}
-				</tbody>
-			</table>
+						{% if user.company is not empty %}
+							<tr>
+								<th scope="row">Entreprise :</th>
+								<td>{{ user.company }}</td>
+							</tr>
+						{% endif %}
+						<tr>
+							<th scope="row">Numéro de téléphone :</th>
+							<td>{{ user.number }}</td>
+						</tr>
+						<tr>
+							<th scope="row">Adresse :</th>
+							<td>{{ user.adress }}</td>
+						</tr>
+						<tr>
+							<th scope="row">Ville :</th>
+							<td>{{ user.city }}</td>
+						</tr>
+						<tr>
+							<th scope="row">Code postal :</th>
+							<td>{{ user.zipcode }}</td>
+						</tr>
+						<tr>
+							<th scope="row">Email :</th>
+							<td>{{ user.email }}</td>
+						</tr>
+					</tbody>
+				</table>
+				<a href="{{ path('edit_profil', {'id': user.id}) }}" class="btn btn-info" title="Modifier le profil">
+					<i class="bi bi-pencil-square"></i>
+				</a>
+			</div>
+
+{# /////////////////////////// Table prospects /////////////////////////////////#}
+			<div class="tab-pane fade" id="pills-ddevis" role="tabpanel" aria-labelledby="pills-ddevis-tab">
+
+			<div class="col-10 mx-auto my-4">
+
+				<h2 class="text-center">Mes demandes de devis</h2>
+
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+
+
+								<th>Prestation</th>
+								<th>Description</th>
+								<th>Budget</th>
+								<th>Date prévisionnelle</th>
+								<th>Date de demande</th>
+								<th>Statut</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							{% for demandeDevis in demandesDevis %}
+								<tr>
+
+									<td>{{ demandeDevis.prestation }}</td>
+									<td>{{ demandeDevis.description }}</td>
+									<td>{{ demandeDevis.budget }}
+										€</td>
+									<td>{{ demandeDevis.date | date('d/m/Y') }}</td>
+									<td>{{ demandeDevis.createdAt| date('d/m/Y') }}</td>
+									<td>{{ demandeDevis.statut }}</td>
+									<td>
+										<a href="" class="btn btn-warning" title="Modifier ">
+											<i class="bi bi-pencil-square"></i>
+										</a>
+										<a href="" class="btn btn-danger" title="Supprimer " onclick="return confirm('Cette action supprimera l'utilisateur de la base Voulez-vous continuer ? )">
+											<i class="bi bi-trash3"></i>
+										</a>
+									</td>
+
+								</tr>
+							{% else %}
+								<tr>
+									<td colspan="7" class="bg-warning text-center">Aucune demande de devis</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+			</div>
+
+			{# /////////////////////////// Table devis /////////////////////////////////#}
+			<div class="tab-pane fade" id="pills-devis" role="tabpanel" aria-labelledby="pills-devis-tab">
+			<div class="col-10 mx-auto my-4">
+
+				<h2 class="text-center">Mes Devis</h2>
+
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Numero du devis</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							{% for item in devis %}
+								<tr>
+									<td>{{ item.numberdevis }}</td>
+									{# <td>{{ item.date | date('d/m/Y')}}</td>  #}
+									<td>
+										<a href="" class="btn btn-warning" title="Modifier ">
+											<i class="bi bi-pencil-square"></i>
+										</a>
+										<a href="" class="btn btn-danger" title="Supprimer " onclick="return confirm('Cette action supprimera l'utilisateur de la base Voulez-vous continuer ? )">
+											<i class="bi bi-trash3"></i>
+										</a>
+									</td>
+
+								</tr>
+							{% else %}
+								<tr>
+									<td colspan="7" class="bg-warning text-center">Aucun devis</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+</div>
 		</div>
-	</div>
-
-	{# affichage de demande de devis #}
-
-	<div class="col-10 mx-auto my-4">
-
-		<h2 class="text-center">Mes Devis</h2>
-
-		<div class="table-responsive">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Numero du devis</th>
-						<th>Action</th>
-					</tr>
-				</thead>
-
-				<tbody>
-					{% for item in devis %}
-						<tr>
-							<td>{{ item.numberdevis }}</td> 
-							<td>{{ item.date | date('d/m/Y')}}</td> 
-							<td>
-								<a href="" class="btn btn-warning" title="Modifier ">
-									<i class="bi bi-pencil-square"></i>
-								</a>
-								<a href="" class="btn btn-danger" title="Supprimer " onclick="return confirm('Cette action supprimera l'utilisateur de la base Voulez-vous continuer ? )">
-									<i class="bi bi-trash3"></i>
-								</a>
-							</td>
-
-						</tr>
-					{% else %}
-						<tr>
-							<td colspan="7" class="bg-warning text-center">Aucun devis</td>
-						</tr>
-					{% endfor %}
-				</tbody>
-			</table>
-		</div>
-	</div>
-
-</div>{% endblock %}
+	{% endblock %}
