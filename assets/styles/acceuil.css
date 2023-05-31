@@ -144,7 +144,8 @@ width: 60%;
 .section2 .container .img-s2{
     width: 40%;
     background-image: url(../../public/images/section2.jpg);
-    background-size: contain;
+    background-size: cover;
+    background-position: right;
     background-repeat: no-repeat;
 }
 
@@ -179,11 +180,15 @@ width: 60%;
 
 /**********section3****************/
 
+.section3{
+    margin: 80px 0;
+}
+
 .section3 .container2{
     display: flex;
     justify-content: center;
     width: 90%;
-    margin: 0 auto;
+    margin: 80px auto;
 }
 
 .section3 .container2 .box{
@@ -193,16 +198,14 @@ width: 60%;
     border-radius: 8px;
     text-align: center;
     margin: 0 40px;
-    border: 2px solid #979ca4;
 }
-.section3 .container2 .box p{
-    padding: 10px 30px;
-}
+
 
 .section3 .container2 .box .grad{
 padding: 90px 10px;
 height: 300px;
 border-top: 8px;
+border-radius: 8px;
 }
 
 .section3 .container2 .box .grad.s1{
@@ -225,11 +228,9 @@ background: linear-gradient(to right, #64E8EA 0%, #62E1B6 100%);
         background: linear-gradient(to right, #62e1b6 0%, #8AE087 100%);
     }
 
-    .section3 .container2 .box .wig{
-        height: 100%;
-    }
 
-    .section3 .container2 .box .wig.card1{
+
+    /* .section3 .container2 .box .wig.card1{
         background-image: url(../../public/images/presta.jpg);
         background-size: cover;
         background-repeat: no-repeat;
@@ -251,8 +252,7 @@ background: linear-gradient(to right, #64E8EA 0%, #62E1B6 100%);
         opacity: 0.33;
         background-position: center;
         
-    }
-
+    } */
 
 
 .section3 .container2 .box i{
@@ -300,14 +300,14 @@ background: linear-gradient(to right, #64E8EA 0%, #62E1B6 100%);
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
-    gap: 2vmin;
+    gap: 6vmin;
     padding: 15px;
     justify-content: center;
 }
 
 .section4 .prestations .presta{
     list-style-type: none;
-    height: 250px;
+    height: 300px;
     flex-grow: 1;
 }
 .section4 .prestations .presta img{

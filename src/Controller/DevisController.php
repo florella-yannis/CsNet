@@ -35,6 +35,7 @@ class DevisController extends AbstractController
             $devis->setUpdatedAt(new DateTime());
             $devis->newNumberDevis();
 
+
             $repository->save($devis, true);
 
             $this->addFlash('success', "Le devis a été realisé avec succes.");
@@ -79,7 +80,6 @@ class DevisController extends AbstractController
 
             $devis->setUser($user);
 
-
             $repository->save($devis, true);
 
             $this->addFlash('success', "Le devis a été realisé avec succes.");
@@ -107,9 +107,8 @@ class DevisController extends AbstractController
             // Stockez les données du formulaire de devis dans la session
             $request->getSession()->set('devis', $devis);
 
-            foreach ($devis->getDetaildevis() as $detailDevis) {
-                $devis->addDetailDevi($detailDevis);
-            }
+            // Ajouter le détail de devis à la liste des détails du devis
+            $devis->addDetailDevi($detailDevis); 
 
             $devis->newNumberDevis();
             $detailDevis->setDevis($devis);
@@ -207,6 +206,7 @@ class DevisController extends AbstractController
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
+        // $dompdf->stream();
 
         $output = $dompdf->output();
         $filename = 'devis_' . $devis->getNumberdevis() . '.pdf';

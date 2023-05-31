@@ -10,9 +10,10 @@
 		<div class="col-10 mx-auto my-4">
 			<h2 class="text-center">Les devis</h2>
 			<table class="table">
-				<thead>
+				<thead class="table-light">
 					<tr>
 						<th>CLient</th>
+						<th>Numéro du devis</th>
 						<th>Date</th>
 						<th>Prix</th>
 						<th>Action</th>
@@ -23,6 +24,7 @@
 					{% for item in devis %}
 						<tr>
 							<td>{{ item.client}}</td>
+							<td>{{ item.numberdevis}}</td>
 							<td>{{ item.createdAt | date('d/m/Y')}}</td>
 							<td>
 								{% for detailDevis in item.detaildevis %}

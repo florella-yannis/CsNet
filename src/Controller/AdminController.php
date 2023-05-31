@@ -40,8 +40,8 @@ class AdminController extends AbstractController
         $form = $this->createFormBuilder($demandeDevis)
             ->add('statut', ChoiceType::class, [
                 'choices' => [
-                    'en_cours' => 'En cours de traitement',
-                    'traite' => 'Traitée',
+                    'En cours de traitement' => 'en_cours',
+                    'Traité' => 'traite',
                 ],
                 'label' => 'Statut',
             ])

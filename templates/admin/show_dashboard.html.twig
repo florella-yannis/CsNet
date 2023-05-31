@@ -5,8 +5,12 @@
 
 {% block body %}
 
+<div class="row">
+			<div class="col-6 mx-auto">
+				{% include 'include/_flashes.html.twig' %}
+			</div>
+		</div>
 	<div class="row">
-		{% include 'include/_flashes.html.twig' %}
 		<div class="col-10 mx-auto my-4">
 
 			<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -25,7 +29,7 @@
 				<div class="tab-pane fade show active" id="pills-clients" role="tabpanel" aria-labelledby="pills-clients-tab">
 					<h2 class="text-center">Mes clients</h2>
 					<table class="table">
-						<thead>
+						<thead class="table-light">
 							<tr>
 								<th>Nom</th>
 								<th>Prénom</th>
@@ -37,7 +41,7 @@
 								<th>Code Postal</th>
 								<th>Email</th>
 								<th>Date d'inscription</th>
-								<th>Action</th>
+								<th>Créer un devis</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -57,12 +61,6 @@
 										<a href="{{ path('create_devis_user', {'id': client.id}) }}" class="btn btn-info" title="Créer un devis">
 											<i class="bi bi-clipboard-plus"></i>
 										</a>
-										<a href="" class="btn btn-warning" title="Modifier le statut">
-											<i class="bi bi-pencil-square"></i>
-										</a>
-										<a href="" class="btn btn-danger" title="Supprimer " onclick="return confirm('Cette action supprimera l'utilisateur de la base Voulez-vous continuer ? )">
-											<i class="bi bi-trash3"></i>
-										</a>
 									</td>
 								</tr>
 							{% else %}
@@ -80,7 +78,7 @@
 				<div class="col-10 mx-auto my-4">
 					<h2 class="text-center">Mes prospects</h2>
 					<table class="table">
-						<thead>
+						<thead class="table-light">
 							<tr>
 								<th>Nom</th>
 								<th>Prénom</th>
@@ -88,7 +86,7 @@
 								<th>Numéro de téléphone</th>
 								<th>Message</th>
 								<th>Date de la demande</th>
-								<th>Action</th>
+								
 							</tr>
 						</thead>
 						<tbody>
@@ -100,14 +98,7 @@
 									<td>{{ prospect.number }}</td>
 									<td>{{ prospect.message }}</td>
 									<td>{{ prospect.createdAt| date('d/m/Y') }}</td>
-									<td>
-										<a href="" class="btn btn-warning" title="Modifier ">
-											<i class="bi bi-pencil-square"></i>
-										</a>
-										<a href="" class="btn btn-danger" title="Supprimer " onclick="return confirm('Cette action supprimera l'utilisateur de la base Voulez-vous continuer ? )">
-											<i class="bi bi-trash3"></i>
-										</a>
-									</td>
+									
 								</tr>
 							{% else %}
 								<tr>
@@ -124,7 +115,7 @@
 				<div class="col-10 mx-auto my-4">
 					<h2 class="text-center">Mes demandes de devis</h2>
 					<table class="table">
-						<thead>
+						<thead class="table-light">
 							<tr>
 								<th>Nom</th>
 								<th>Prénom</th>
@@ -135,7 +126,7 @@
 								<th>Date de demande</th>
 								<th>Numéro de telephone</th>
 								<th>Statut</th>
-								<th>Action</th>
+								<th>Modifer le statut</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -155,9 +146,7 @@
 										<a href="{{ path('demande_devis_modifier_statut', {'id': demandeDevis.id}) }}" class="btn btn-warning" title="Modifier ">
 											<i class="bi bi-pencil-square"></i>
 										</a>
-										<a href="" class="btn btn-danger" title="Supprimer " onclick="return confirm('Cette action supprimera l'utilisateur de la base Voulez-vous continuer ? )">
-											<i class="bi bi-trash3"></i>
-										</a>
+										
 									</td>
 								</tr>
 							{% else %}

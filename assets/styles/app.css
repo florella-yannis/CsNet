@@ -65,3 +65,23 @@ body {
     display: flex;
     justify-content: space-between
 }
+
+th, td {
+    color: #4c5562;
+}
+
+.bg-green{
+    background-color: #73cf56 !important;
+}
+
+.txt-h1{
+    color: white;
+    text-transform: uppercase;
+    background-color: #0000003b;
+    padding: 10px 50px;
+    border-radius: 5px;
+}
+
+.mbp80{
+    margin-bottom: 80px;
+}

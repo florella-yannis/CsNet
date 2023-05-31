@@ -2,17 +2,17 @@
 
 namespace App\Controller;
 
-use App\Entity\DemandeDevis;
-use App\Entity\Devis;
 use DateTime;
 use App\Entity\User;
+use App\Entity\Devis;
 use App\Form\UserFormType;
-use App\Repository\UserRepository;
-use App\Form\ChangePasswordFormType;
+use App\Entity\DemandeDevis;
 use App\Form\DemandeDevisFormType;
-use App\Repository\DemandeDevisRepository;
+use App\Form\EditPasswordFormType;
+use App\Repository\UserRepository;
 use App\Repository\DevisRepository;
 use Symfony\Component\Form\FormError;
+use App\Repository\DemandeDevisRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -82,8 +82,8 @@ class ProfilController extends AbstractController
         ]);
     }
 
-    #[Route('/changer-mot-de-passe/{id}', name: 'change_password', methods: ['GET', 'POST'])]
-    public function changePassword(Request $request, User $user, UserRepository $repository, UserPasswordHasherInterface $passwordHasher): Response
+    #[Route('/changer-mot-de-passe/{id}', name: 'edit_password', methods: ['GET', 'POST'])]
+    public function editPassword(Request $request, User $user, UserRepository $repository, UserPasswordHasherInterface $passwordHasher): Response
     {
         //probleme de securité a mettre a jour , UserPasswordEncoderInterface ne fonctionne
         // Vérifier si l'utilisateur est connecté
@@ -93,7 +93,7 @@ class ProfilController extends AbstractController
         }
 
         // Créer le formulaire de changement de mot de passe
-        $form = $this->createForm(ChangePasswordFormType::class, $user);
+        $form = $this->createForm(EditPasswordFormType::class, $user);
 
         // Traiter la soumission du formulaire
         $form->handleRequest($request);
@@ -120,7 +120,7 @@ class ProfilController extends AbstractController
             }
         }
 
-        return $this->render('profil/change_password.html.twig', [
+        return $this->render('profil/edit_password.html.twig', [
             'form' => $form->createView(),
         ]);
     }

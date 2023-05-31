@@ -18,7 +18,11 @@
 
 
 .herospace {
-    background-image: url(../../public/images/herospacee.jpg);
+    /* background-image: url(../../public/images/herospacee.jpg); */
+    background: #62e1b6;
+    background: -moz-linear-gradient(left, #62e1b6 0%, #8AE087 100%);
+    background: -webkit-linear-gradient(left, #62e1b6 0%, #8AE087 100%);
+    background: linear-gradient(to right, #62e1b6 0%, #8AE087 100%);
 }
 
 .herocontact {
@@ -26,19 +30,41 @@
 }
 
 .heroentretien {
-    background-image: url(../../public/images/heroentretien.jpg);
+    /* background-image: url(../../public/images/heroentretien.jpg); */
+    background: #56BED9;
+    background: -moz-linear-gradient(left, #56BED9 0%, #64e8ea 100%);
+    background: -webkit-linear-gradient(left, #56BED9 0%, #64e8ea 100%);
+    background: linear-gradient(to right, #56BED9 0%, #64e8ea 100%);
 }
 
+.img-s3,
+.img-s4{
+    height: 500px;
+    width: 60%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: filter 0.3s ease;
+    filter: brightness(80%);
+}
+.img-s3:hover,
+.img-s4:hover {
+    filter: brightness(100%);
+  }
 
 .img-s3{
-    width: 40%;
     background-image: url(../../public/images/images3.jpg);
-    background-size: contain;
-    background-repeat: no-repeat;
 }
 .img-s4{
-    width: 40%;
     background-image: url(../../public/images/images4.jpg);
-    background-size: contain;
-    background-repeat: no-repeat;
+}
+
+.sp{
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.text-sp{
+    width: 40%;
+    padding: 0 40px;
 }

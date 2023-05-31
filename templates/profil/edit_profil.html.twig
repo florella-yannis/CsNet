@@ -1,38 +1,38 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modifier mon profil | CSNET{% endblock %}
+{% block title %}Modifier mon profil | CSNET
+{% endblock %}
 
 {% block body %}
-<div class="row">
-    <div class="col-6">
+	<div class="row">
+		
 
-        <h2 class="text-center">Modifier mes informations</h2>
+			<h2 class="text-center mt-4">Modifier mes informations</h2>
 
-        <div class="row">
-		<div class="col-8 mx-auto">
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
-        {{ form_end(form) }}
-</div>
-</div>
+			<div class="row">
+				<div class="col-8 mx-auto">
+					{{ form_start(form) }}
+					{{ form_widget(form) }}
+					{{ form_end(form) }}
+				</div>
+			</div>
 
-    </div>
-</div>
+		
+	</div>
 
- <script>
-                const particulierInput = document.getElementById('user_form_socialreason_0');
-                const entrepriseInput = document.getElementById('user_form_socialreason_1');
-                const companyInput = document.getElementById('user_form_company');
+	<script>
+		const particulierInput = document.getElementById('user_form_socialreason_0');
+const entrepriseInput = document.getElementById('user_form_socialreason_1');
+const companyInput = document.getElementById('user_form_company');
 
-                const toggleCompanyInput = () =>{
-                    companyInput.disabled =!entrepriseInput.checked;
+const toggleCompanyInput = () => {
+companyInput.disabled = ! entrepriseInput.checked;
 
-                };
+};
 
-                particulierInput.addEventListener('change',toggleCompanyInput);
-                entrepriseInput.addEventListener('change',toggleCompanyInput);
+particulierInput.addEventListener('change', toggleCompanyInput);
+entrepriseInput.addEventListener('change', toggleCompanyInput);
 
-                toggleCompanyInput();
-                
-            </script>
+toggleCompanyInput();
+	</script>
 {% endblock %}

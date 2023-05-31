@@ -181,7 +181,7 @@ class RegisterFormType extends AbstractType
                 'label'=> 'Valider',
                 'validate' => false,
                 'attr' => [
-                    'class' => 'd-block mx-auto col-3 btn btn-warning'
+                    'class' => 'd-block mx-auto col-3 btn btn-success'
                 ]
             ])
             ;
