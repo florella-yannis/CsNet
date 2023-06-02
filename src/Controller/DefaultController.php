@@ -55,6 +55,10 @@ class DefaultController extends AbstractController
             ]);
     }
 
+    
+
+
+
     // parti du footer
 
     #[Route('/mentions-legales', name: 'mentions_legales',methods:['GET'])]
