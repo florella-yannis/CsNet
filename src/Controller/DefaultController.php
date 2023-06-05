@@ -5,8 +5,11 @@ namespace App\Controller;
 use DateTime;
 use App\Entity\Prospect;
 use App\Form\ProspectFormType;
+use Symfony\Component\Mime\Email;
 use App\Repository\ProspectRepository;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -32,7 +35,7 @@ class DefaultController extends AbstractController
     }
 
     #[Route('/contact', name:'show_contact', methods:['GET','POST'])]
-    public function showContact(Request $request, ProspectRepository $repository): Response
+    public function showContact(Request $request, ProspectRepository $repository, MailerInterface $mailer): Response
     {
         $prospect = new Prospect();
 
@@ -45,6 +48,24 @@ class DefaultController extends AbstractController
             $prospect->setUpdatedAt(new DateTime());
 
             $repository->save($prospect, true);
+
+            //email
+            $email = (new TemplatedEmail())
+            ->from($prospect->getEmail())
+            ->to('contact@csnet.com')
+            //->cc('cc@example.com')
+            //->bcc('bcc@example.com')
+            //->replyTo('fabien@example.com')
+            //->priority(Email::PRIORITY_HIGH)
+            ->subject($prospect->getSubject())
+            ->text($prospect->getMessage())
+            ->htmlTemplate('default/email/email_contact.html.twig')
+
+            ->context([
+                'prospect' => $prospect,
+            ]);
+
+        $mailer->send($email);
 
             $this->addFlash('success', "Votre demande a été pris en compte");
             return $this->redirectToRoute('show_home');

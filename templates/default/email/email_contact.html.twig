@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+        <h1>Demande de {{prospect.lastname}} {{prospect.firstname}} </h1>
+ <p>Email : {{prospect.email}}</p>
+ <p>Sujet : {{prospect.subject}} </p>
+ <p>Message :</p>
+ <div>
+ <p>{{prospect.message | raw }}</p>
+ </div>
+
+	</body>
+</html>

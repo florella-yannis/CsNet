@@ -47,6 +47,20 @@ class ProspectFormType extends AbstractType
                     ]),
                 ],
             ])
+            ->add('subject', TextType::class, [
+                'label'=>"Sujet",
+                'constraints' => [
+                    new NotBlank([
+                        'message' =>'Ce champ ne peut etre vide'
+                    ]),
+                    new Length([
+                        'min' => 1,
+                        'max' => 255,
+                        'minMessage' =>'Ce champ doit comporter au minimum {{ limit }} caractères.',
+                        'maxMessage' =>'Ce champ doit comporter au maximum {{ limit }} caractères.',
+                    ]),
+                ],
+            ])
             ->add('email', EmailType::class, [
                 'label' => "Email",
                 'constraints' => [
