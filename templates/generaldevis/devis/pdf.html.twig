@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title></title>
+	</head>
+	<body>
+
+		<style>
+
+			body {
+				padding: 5px 15px
+			}
+
+			.table {
+				margin: 0 auto;
+				width: 90%;
+				border: 1px solid yellow;
+				background-color: #e5ffc7;
+			}
+
+			.footer {
+				position: fixed;
+				bottom: 40px;
+				left: 0;
+				right: 0;
+				height: 50px;
+				text-align: center;
+				color: grey;
+				font-size: 15px;
+			}
+
+			li {
+				list-style: none;
+			}
+		</style>
+	</body>
+	<body>
+		<header>
+
+			<table style="width: 100%; border-collapse: collapse;">
+				<tr>
+					<td colspan="3" style="text-align: center;">
+						<img src="{{ asset('images/logoo.jpg') }}" alt="logo-cs-net" width="100" height="100">
+						<h1 style="color: #8ae087;text-decoration: underline;">DEVIS</h1>
+					</td>
+				</tr>
+				<tr>
+					<td style="width: 50%;">
+						<ul>
+							<li>C.S.NET</li>
+							<li>43 Rue du Chenival</li>
+							<li>95690 – NESLES LA VALLEE</li>
+							<li>Contact : 06.68.33.87.50</li>
+						</ul>
+					</td>
+					<td style="width: 0%;"></td>
+					<td style="width: 50%;text-align: right;">
+						<ul>
+							<li>DEVIS VALABLE TROIS MOIS</li>
+							<li>DEVIS : N°
+								{{ devis.numberdevis}}</li>
+							<li>CLIENT :
+								{{devis.client}}</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td style="text-align: right; width: 50%;">
+						<ul>
+							<li>{{devis.lastname}}
+								{{devis.firstname}}</li>
+							<li>{{devis.society}}</li>
+							<li>{{devis.adress}}</li>
+							<li>{{devis.zipcode}}
+								à
+								{{devis.city}}</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td style="text-align: right;width: 50%;">
+						<p>
+							Nesles-la-vallée, le
+							{{devis.createdAt | date('d/m/Y')}}</p>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<p style="text-align: center;">LIEU D'INTERVENTION :
+							{{devis.intervention}}</p>
+						<div class="devis">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Designation</th>
+										<th>Prix unitaire</th>
+										<th>Quantité</th>
+										<th>Prix total</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for service in services %}
+										<tr>
+											<td>{{ service.designation }}</td>
+											<td>{{ service.priceunit }}</td>
+											<td>{{ service.quantity }}</td>
+											<td>{{ service.pricetotal }}</td>
+										</tr>
+									{% endfor %}
+									<tr>
+										<td colspan="3" class="text-right font-weight-bold">Prix final</td>
+										{# <td colspan="2" class="text-left font-weight-bold">{{ finalprice }}</td> #}
+									</tr>
+								</tbody>
+
+							</table>
+						</div>
+						<p style="text-align: center; font-style: italic;">TVA non applicable article 293-B-I du code général des impôts</p>
+						<p style="text-align: center;">Signature précédée de la mention 'Bon pour accord'
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3" style="text-align: center;">
+						<div class="footer">
+							<ul>
+								<li>C.S.NET</li>
+								<li>43  Rue du Chenival 95690 Nesles-la-vallée</li>
+								<li>TEL : 06.68.33.87.50   E-MAIL : christopher.sedilliere@outlook.fr</li>
+								<li>SIREN : 877 483 107</li>
+							</ul>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</body>
+	</body>
+</html>

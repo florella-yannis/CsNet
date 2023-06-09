@@ -172,10 +172,8 @@ width: 60%;
     flex-direction: column;
 }
 .text-hs h2, .text-hs span{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
     color: #ffff;
+    margin-bottom: 10px;
 }
 
 /**********section3****************/
@@ -260,7 +258,7 @@ background: linear-gradient(to right, #64E8EA 0%, #62E1B6 100%);
     color: #ffff;
 }
 
-.button{
+/* .button{
     background: #73cf56;
     padding: 14px 22px;
     color: #fff;
@@ -275,20 +273,8 @@ background: linear-gradient(to right, #64E8EA 0%, #62E1B6 100%);
 }
 .button:after{
     color: #8AE087;
-}
-/* .button:hover {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 5px;
-    height: 5px;
-    background: rgba(255,255,255,.5);
-    opacity: 0;
-    border-radius: 100%;
-    transform: scale(1,1) translate(-50%);
-    transform-origin: 50% 50%;
 } */
+
 
 /*********section4***************/
 

@@ -138,7 +138,7 @@
 									<td>{{ item.numberdevis }}</td>
 									{# <td>{{ item.date | date('d/m/Y')}}</td>  #}
 									<td>
-										<a href="" class="btn btn-info" title="voir devis ">
+										<a href="{{ path('app_devis_pdf', { 'id': item.id }) }}" class="btn btn-info" title="voir devis ">
 											<i class="bi bi-eye"></i>
 										</a>
 										
