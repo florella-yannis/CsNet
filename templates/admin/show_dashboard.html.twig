@@ -136,7 +136,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									{% for demandeDevis in demandesDevis %}
+									{% for demandeDevis in demandesDevis|sort((a, b) => b.createdAt.timestamp - a.createdAt.timestamp)  %}
 										<tr>
 											<td>{{ demandeDevis.user.lastname}}</td>
 											<td>{{ demandeDevis.user.firstname }}</td>

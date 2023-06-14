@@ -73,7 +73,7 @@ class DemandeDevisFormType extends AbstractType
                 'label' => "Valider",
                 'validate' => false,
                 'attr' => [
-                    'class' => 'd-block mx-auto my-3 col-4 btn btn-warning'
+                    'class' => 'd-block mx-auto my-3 col-4 btn btn-primary'
                 ]
             ])
         ;

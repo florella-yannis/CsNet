@@ -30,9 +30,9 @@
 			<div class="container">
 				<div class="text-s2">
 					<span>Des prestations variées</span>
-					<p>Nous offrons des services de nettoyage professionnels pour les bureaux et les espaces communs, ainsi que l'entretien de jardins pour les particuliers et les entreprises. Nous sommes déterminés à fournir des services de qualité supérieure à nos clients, avec des équipes expérimentées et des équipements modernes pour garantir un travail efficace et rapide.</p>
-					<p>Nous sommes fiers de notre approche personnelle et de notre engagement à fournir un excellent service client. Notre objectif est de répondre à tous les besoins de nettoyage et d'entretien de nos clients avec des solutions sur mesure, adaptées à chaque situation.</p>
-					<p>Nous sommes impatients de travailler avec vous pour répondre à vos besoins de nettoyage et d'entretien d'espaces verts. Contactez-nous dès aujourd'hui pour discuter de vos projets et obtenir un devis personnalisé.</p>
+					<p>Nous offrons des services de nettoyage professionnels pour les bureaux et les espaces communs, ainsi que <a href="{{ path('show_espace_vert') }}">l'entretien de jardins</a>  pour les particuliers et les entreprises. Nous sommes déterminés à fournir des services de qualité supérieure à nos clients, avec des équipes expérimentées et des équipements modernes pour garantir un travail efficace et rapide.</p>
+					<p>Nous sommes fiers de notre approche personnelle et de notre engagement à fournir un excellent service client. Notre objectif est de répondre à tous les besoins de <a  href="{{ path('show_entretien') }}">nettoyage et d'entretien</a> de nos clients avec des solutions sur mesure, adaptées à chaque situation.</p>
+					<p>Nous sommes impatients de travailler avec vous pour répondre à vos besoins de nettoyage et d'entretien d'espaces verts. <a  href="{{ path('show_contact') }}">Contactez-nous</a> dès aujourd'hui pour discuter de vos projets et obtenir un devis personnalisé.</p>
 				</div>
 				<div
 					class="img-s2">{# <img src="{{asset('images/section2.jpg')}}" alt="image"> #}
@@ -43,7 +43,7 @@
 					<div class="text-hs">
 						<h2>CONTACTEZ-NOUS</h2>
 						<span>Pour en savoir plus sur nos prestations</span>
-						<button type="button" class="btn btn-success">Nous contacter</button>
+						<a class="btn btn-success"  href="{{ path('show_contact') }}">Nous contacter</a>
 					</div>
 				</div>
 			</div>
@@ -81,10 +81,12 @@
 
 			<div class="prestations">
 				<div class="presta">
-					<a  href="{{path('show_espace_vert')}}">Espace-vert<i class="bi bi-search"></i><img src="{{asset('images/prestation1.jpg')}}" alt="ecran1"></a>
+				{# <span>ESPACE-VERT</span> #}
+					<a  href="{{path('show_espace_vert')}}"><i class="bi bi-search"></i><img src="{{asset('images/prestation1.jpg')}}" alt="ecran1"></a>
 				</div>
 				<div class="presta">
-					<a href="{{path('show_entretien')}}">Nettoyage<i class="bi bi-search"></i><img src="{{asset('images/prestation2.jpg')}}" alt="ecran1"></a>
+				{# <span>ENTRETIEN</span> #}
+					<a href="{{path('show_entretien')}}"><i class="bi bi-search"></i><img src="{{asset('images/prestation2.jpg')}}" alt="ecran1"></a>
 				</div>
 
 			</div>

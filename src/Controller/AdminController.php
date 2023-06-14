@@ -61,7 +61,7 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('show_dashboard');
         }
 
-        return $this->render('admin/demandedevis/modifier_statut.html.twig', [
+        return $this->render('generaldevis/demandedevis/modifier_statut.html.twig', [
             'form' => $form->createView(),
         ]);
     }

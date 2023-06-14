@@ -6,6 +6,7 @@
     padding: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
+    /* box-shadow: 0 0 0 3px red; */
 }
 ::selection{
     background-color: #000101;
