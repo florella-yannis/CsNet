@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-
+#[Route('/admin')]
 class DevisController extends AbstractController
 {
 
@@ -36,15 +36,13 @@ class DevisController extends AbstractController
             $devis->setUpdatedAt(new DateTime());
             $devis->newNumberDevis();
 
-
             $repository->save($devis, true);
 
             $this->addFlash('success', "Le devis a été realisé avec succes.");
             return $this->redirectToRoute('create_detail_devis', ['id' => $devis->getId()]);
         }
 
-
-        return $this->render('generaldevis/devis/form_devis.html.twig', [
+        return $this->render('admin/devis/form_devis.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -56,10 +54,6 @@ class DevisController extends AbstractController
 
         $form = $this->createForm(DevisFormType::class, $devis);
 
-        // $id = $request->attributes->get('id');
-
-        // Récupérer l'utilisateur à partir de l'identifiant
-        // $user = $entityManager->getRepository(User::class)->find($id);
 
         // Autres champs à préremplir avec les informations de l'utilisateur
         $form->get('client')->setData($user->getClient());
@@ -88,7 +82,7 @@ class DevisController extends AbstractController
         }
 
 
-        return $this->render('generaldevis/devis/form_devis.html.twig', [
+        return $this->render('admin/devis/form_devis.html.twig', [
             'form' => $form->createView(),
             'user' => $user
         ]);
@@ -127,7 +121,7 @@ class DevisController extends AbstractController
             $finalprice += $service->getPricetotal();
         }
 
-        return $this->render('generaldevis/devis/form_detail_devis.html.twig', [
+        return $this->render('admin/devis/form_detail_devis.html.twig', [
             'form' => $form->createView(),
             'services' => $services,
             'finalprice' => $finalprice,
@@ -174,7 +168,7 @@ class DevisController extends AbstractController
 
 
         // Affichez les données sur la page Twig de confirmation de devis
-        return $this->render('generaldevis/devis/recap_devis.html.twig', [
+        return $this->render('admin/devis/recap_devis.html.twig', [
             'services' => $services,
             'devis' => $devis,
             'finalprice' => $finalprice
@@ -182,50 +176,6 @@ class DevisController extends AbstractController
         ]);
     }
 
-    //----------------------------------------Creation du pdf-----------------------------------------//
-
-    #[Route('/{id}/pdf', name: 'app_devis_pdf',  methods: ['GET'])]
-    public function createPdf(Request $request, Devis $devis, DevisRepository $devisRepository, EntityManagerInterface $entityManager): Response
-    {
-        $dompdf = new Dompdf();
-        
-
-        // $id = $request->attributes->get('id');
-
-        // // Récupérez le devis à partir de l'identifiant
-        // $devis = $devisRepository->find($id);
-
-
-
-        $services = $entityManager->getRepository(DetailDevis::class)->findBy(['devis' => $devis]);
-
-        $html = $this->renderView('generaldevis/devis/pdf.html.twig', [
-            'devis' => $devis,
-            'services' => $services
-        ]);
-
-        //  dd($html);
-        $dompdf->loadHtml($html);   
-        $dompdf->setPaper('A4', 'portrait');
-        $options = new Options();
-        $options->set('isRemoteEnabled', true);
-        $dompdf->setOptions($options);
-        
-        $dompdf->render();
-
-        $output = $dompdf->output();
-        $filename = 'devis_' . $devis->getNumberdevis() . '.pdf';
-        $file = $this->getParameter('kernel.project_dir') . '/public/' . $filename;
-
-        file_put_contents($file, $output);
-        //afichage du pdf 
-        $response = new Response($dompdf->output());
-        $response->headers->set('Content-Type', 'application/pdf');
-
-        return $response;
-
-        // return $this->redirectToRoute('recap_devis', ['id' => $devis->getId()]);
-    }
 
     //----------------------------------------show l'ensemble des devis -----------------------------------------//
 
@@ -234,8 +184,24 @@ class DevisController extends AbstractController
     {
         $devis = $entityManager->getRepository(Devis::class)->findAll();
 
-        return $this->render('generaldevis/devis/show_devis.html.twig', [
+        return $this->render('admin/devis/show_devis.html.twig', [
             'devis' => $devis,
         ]);
+    }
+
+    //-------------------------------------------suprimer un devis---------------------------------------------------//
+    #[Route('/supprimer-un-devis/{id}', name: 'hard_delete_devis', methods: ['GET'])]
+    public function hardDeleteDevis(Devis $devis, DevisRepository $repository,  EntityManagerInterface $entityManager): Response
+    {
+        // Supprimer les détails de devis associés
+        foreach ($devis->getDetaildevis() as $detailDevis) {
+            $devis->removeDetailDevi($detailDevis);
+            // Supprimer le détail de devis
+            $entityManager->remove($detailDevis, true);
+        }
+        $repository->remove($devis, true);
+
+        $this->addFlash('success', "Le devis a bien été supprimé définitivement de la base.");
+        return $this->redirectToRoute('show_devis');
     }
 }

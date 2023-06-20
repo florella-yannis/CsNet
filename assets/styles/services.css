@@ -43,13 +43,13 @@
     width: 60%;
     background-size: contain;
     background-repeat: no-repeat;
-    transition: filter 0.3s ease;
+    transition: filter 0.4s ease;
     filter: brightness(80%);
 }
 .img-s3:hover,
 .img-s4:hover {
     filter: brightness(100%);
-  }
+}
 
 .img-s3{
     background-image: url(../../public/images/images3.jpg);
@@ -61,6 +61,7 @@
 .sp{
     display: flex;
     align-items: center;
+    margin-bottom: 50px;
 }
 
 .text-sp{
@@ -83,8 +84,8 @@
         width: 95%;
         margin: 40px 0;
     }
-     .img-s3, .img-s4 {
-        background-size: contain;
-        width: 100%;
+    .img-s3, .img-s4 {
+        background-size: cover;
+    background-position: center;
     } 
 }

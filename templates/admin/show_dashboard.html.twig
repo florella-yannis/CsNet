@@ -44,6 +44,7 @@
 									<th>Email</th>
 									<th>Date d'inscription</th>
 									<th>Créer un devis</th>
+									<th>Modifier profil</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -63,7 +64,13 @@
 											<a href="{{ path('create_devis_user', {'id': client.id}) }}" class="btn btn-info" title="Créer un devis">
 												<i class="bi bi-clipboard-plus"></i>
 											</a>
+											 <td>
+                            <a href="{{ path('edit_profil', {'id': client.id}) }}" class="btn btn-primary" title="Modifier">
+                                <i class="bi bi-pencil-fill"></i>
+                            </a>
+                        </td>
 										</td>
+										
 									</tr>
 								{% else %}
 									<tr>

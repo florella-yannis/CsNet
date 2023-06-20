@@ -49,18 +49,11 @@ class ProfilController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
 
-        // Récupérer l'utilisateur connecté
-        $currentUser = $this->getUser();
-
         // Vérifier si l'utilisateur existe
         if (!$user) {
             throw $this->createNotFoundException('L\'utilisateur n\'existe pas.');
         }
 
-        // Vérifier si l'utilisateur connecté est autorisé à modifier cet utilisateur
-        if ($currentUser !== $user) {
-            return $this->redirectToRoute('show_home');
-        }
 
         $form = $this->createForm(UserFormType::class, $user)
             ->handleRequest($request);
@@ -157,19 +150,4 @@ class ProfilController extends AbstractController
         ]);
     }
 
-    //----------------------------------mes devis --------------------------------//
-
-    // #[Route('/voir-mes-devis', name: 'show_devis_profil', methods: ['GET', 'POST'])]
-    // public function showDevisProfil( User $user, DevisRepository $devisRepository): Response
-    // {
-
-    //     // Récupérer l'utilisateur connecté
-    //     $user = $this->getUser();
-
-    //     $devis = $devisRepository->findBy(['user' => $user]);
-
-    //     return $this->render('profil/show_devis_profil.html.twig', [
-    //         'devis'=>$devis
-    //     ]);
-    // }
 }

@@ -51,9 +51,7 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $demandeDevis->setUpdatedAt(new DateTime());
-
             $repository->save($demandeDevis, true);
 
             $this->addFlash('success', 'Le statut de la demande de devis a été modifié avec succès.');

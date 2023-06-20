@@ -18,14 +18,14 @@
 					<h1>Entretien d'immeuble et d'espace vert</h1>
 					<span>Toute mon experience à votre service</span>
 				</div>
-				<a href="">
+				<a href="#presentation">
 					<i class="fa-solid fa-chevron-down" style="color: #000000;"></i>
 				</a>
 			</div>
 		</section>
 
 		{# *****************section2****************** #}
-		<section class="section2">
+		<section class="section2" id="presentation">
 			<h2>CS NET , Entreprise de nettoyage dans l'Oise et le Val d'oise</h2>
 			<div class="container">
 				<div class="text-s2">
@@ -81,10 +81,12 @@
 
 			<div class="prestations">
 				<div class="presta">
+				<h4 class="text-center">Espace vert</h4>
 				{# <span>ESPACE-VERT</span> #}
 					<a  href="{{path('show_espace_vert')}}"><i class="bi bi-search"></i><img src="{{asset('images/prestation1.jpg')}}" alt="ecran1"></a>
 				</div>
 				<div class="presta">
+				<h4 class="text-center">Entretien</h4>
 				{# <span>ENTRETIEN</span> #}
 					<a href="{{path('show_entretien')}}"><i class="bi bi-search"></i><img src="{{asset('images/prestation2.jpg')}}" alt="ecran1"></a>
 				</div>
