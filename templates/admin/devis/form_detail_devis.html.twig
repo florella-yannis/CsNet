@@ -49,9 +49,14 @@
 								<td colspan="7" class="bg-warning text-center">Renseigné les services du devis</td>
 							</tr>
 						{% endfor %}
-						<tr>
+						{% if services is not empty %}
+							<tr>
 							<td colspan="3" class="text-right font-weight-bold">Prix final</td>
-							<td colspan="2" class="text-left font-weight-bold">{{ finalprice }}</td>
+							 <td colspan="2" class="text-left font-weight-bold">
+            
+                {% set lastService = services|last %}
+                {{ lastService.pricefinal }}
+            {% endif %}
 						</tr>
 					</tbody>
 				</table>

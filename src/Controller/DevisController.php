@@ -115,16 +115,11 @@ class DevisController extends AbstractController
 
         $services = $entityManager->getRepository(DetailDevis::class)->findBy(['devis' => $devis]);
 
-        // Calcul du prix final du devis en ajoutant les prix finaux de chaque détail de devis
-        $finalprice = 0;
-        foreach ($services as $service) {
-            $finalprice += $service->getPricetotal();
-        }
+
 
         return $this->render('admin/devis/form_detail_devis.html.twig', [
             'form' => $form->createView(),
             'services' => $services,
-            'finalprice' => $finalprice,
             'devis' => $devis
         ]);
     }
@@ -160,18 +155,12 @@ class DevisController extends AbstractController
         // Récupérez les détails du devis à partir de l'objet $devis
         $services = $entityManager->getRepository(DetailDevis::class)->findBy(['devis' => $devis]);
 
-        // Calculez le prix total
-        $finalprice = 0;
-        foreach ($services as $service) {
-            $finalprice += $service->getPricetotal();
-        }
-
 
         // Affichez les données sur la page Twig de confirmation de devis
         return $this->render('admin/devis/recap_devis.html.twig', [
             'services' => $services,
             'devis' => $devis,
-            'finalprice' => $finalprice
+
 
         ]);
     }
@@ -180,12 +169,14 @@ class DevisController extends AbstractController
     //----------------------------------------show l'ensemble des devis -----------------------------------------//
 
     #[Route('/voir-mes-devis', name: 'show_devis', methods: ['GET', 'POST'])]
-    public function showClients(EntityManagerInterface $entityManager, DevisRepository $demandeDevisRepository): Response
+    public function showDevis(EntityManagerInterface $entityManager, DevisRepository $demandeDevisRepository): Response
     {
         $devis = $entityManager->getRepository(Devis::class)->findAll();
+        $services = $entityManager->getRepository(DetailDevis::class)->findBy(['devis' => $devis]);
 
         return $this->render('admin/devis/show_devis.html.twig', [
             'devis' => $devis,
+            'services' => $services
         ]);
     }
 

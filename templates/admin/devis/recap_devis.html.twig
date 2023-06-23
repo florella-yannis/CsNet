@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Confirmation de devis
+{% block title %}CS NET |Confirmation de devis
 {% endblock %}
 
 {% block body %}
@@ -74,7 +74,13 @@
 			{% endfor %}
             <tr>
           <td colspan="3" class="text-right font-weight-bold">Prix final</td>
-          <td colspan="2" class="text-left font-weight-bold">{{ finalprice }}</td>
+           <td colspan="2" class="text-left font-weight-bold">
+            {% if services is not empty %}
+                {% set lastService = services|last %}
+                {{ lastService.pricefinal }}
+            {% else %}
+                 N/A
+            {% endif %}
         </tr> 
 		</tbody>
 

@@ -3,37 +3,36 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>
-			{% block title %}CS NET{% endblock %}
+			{% block title %}CS NET | Entreprise nettoyage, entretien dans l'Oise et le Val d'oise
+			{% endblock %}
 		</title>
-		<link rel="icon" href="{{ asset('images/favicon.png') }}"width="80" height="80">
+		<link
+		rel="icon" href="{{ asset('images/favicon.png') }}" width="80" height="80">
 		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="CS NET - Entretien d'espaces verts et immeubles en copropriété dans le Val d'Oise et l'Oise. Des services professionnels pour maintenir et embellir vos espaces extérieurs. Contactez-nous dès maintenant.">
+
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
 		{% endblock %}
 
-        {# <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> #}
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-        <script src="https://kit.fontawesome.com/2b3bbb85b2.js" crossorigin="anonymous"></script>
-		{# <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.2.3/dist/united/bootstrap.min.css%22%3E
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.2.3/dist/united/variable.scss%22%3E
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css%22%3E #}
+		{# <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> #}
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
 	</head>
 	<body>
 
-        {% include "include/_nav.html.twig" %}
-        
+		{% include "include/_nav.html.twig" %}
 
-        <div class="content">
-            {% block body %}{% endblock %}
-        </div>
 
-        {% include "include/_footer.html.twig" %}
+		<div class="content"> {% block body %}{% endblock %}
+			</div>
 
-		{% block javascripts %}
-			{{ encore_entry_script_tags('app') }}
-		{% endblock %}
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-	</body>
-</html>
+			{% include "include/_footer.html.twig" %}
+
+			{% block javascripts %}
+				{{ encore_entry_script_tags('app') }}
+			{% endblock %}
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+			<script src="https://kit.fontawesome.com/2b3bbb85b2.js" crossorigin="anonymous"></script>
+		</body>
+	</html>

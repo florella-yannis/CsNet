@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}CS NET | Acceuil
-{% endblock %}
+{% block title %}CS NET | Entreprise nettoyage, entretien dans l'Oise et le Val d'oise {% endblock %}
 
 {% block body %}
 	<main>
@@ -13,9 +12,9 @@
 					{% include 'include/_flashes.html.twig' %}
 				</div>
 			</div>
-			<div class="herobanner">
+			<div class="herobanner"  aria-label="entretien-nettoyage">
 				<div class="text-hb">
-					<h1>Entretien d'immeuble et d'espace vert</h1>
+					<h1>Entretien d'immeuble, de bureau, copropriété et d'espace vert</h1>
 					<span>Toute mon experience à votre service</span>
 				</div>
 				<a href="#presentation">
@@ -26,20 +25,20 @@
 
 		{# *****************section2****************** #}
 		<section class="section2" id="presentation">
-			<h2>CS NET , Entreprise de nettoyage dans l'Oise et le Val d'oise</h2>
+			<h2>CS NET , Entreprise de nettoyage et d'entretien dans l'Oise et le Val d'oise</h2>
 			<div class="container">
 				<div class="text-s2">
-					<span>Des prestations variées</span>
-					<p>Nous offrons des services de nettoyage professionnels pour les bureaux et les espaces communs, ainsi que <a href="{{ path('show_espace_vert') }}">l'entretien de jardins</a>  pour les particuliers et les entreprises. Nous sommes déterminés à fournir des services de qualité supérieure à nos clients, avec des équipes expérimentées et des équipements modernes pour garantir un travail efficace et rapide.</p>
-					<p>Nous sommes fiers de notre approche personnelle et de notre engagement à fournir un excellent service client. Notre objectif est de répondre à tous les besoins de <a  href="{{ path('show_entretien') }}">nettoyage et d'entretien</a> de nos clients avec des solutions sur mesure, adaptées à chaque situation.</p>
-					<p>Nous sommes impatients de travailler avec vous pour répondre à vos besoins de nettoyage et d'entretien d'espaces verts. <a  href="{{ path('show_contact') }}">Contactez-nous</a> dès aujourd'hui pour discuter de vos projets et obtenir un devis personnalisé.</p>
+					<h4 class="mb-4">DES PRESTATIONS VARIÉES</h4>
+					<p>Nous offrons des services de nettoyage professionnels pour <strong>les bureaux et les espaces communs</strong>, ainsi que <a href="{{ path('show_espace_vert') }}">l'entretien de jardins</a>  pour <strong>les particuliers et les entreprises</strong>. Nous sommes déterminés à fournir des services de qualité supérieure à nos clients, avec des équipes expérimentées et des équipements modernes pour garantir un travail efficace et rapide.</p>
+					<p>Nous sommes fiers de notre approche personnelle et de notre engagement à fournir un excellent service client. Notre objectif est de répondre à tous les besoins de <a  href="{{ path('show_entretien') }}">nettoyage et d'entretien</a> de nos clients avec des solutions <strong>sur mesure, adaptées à chaque situation</strong>.</p>
+					<p>Nous sommes impatients de travailler avec vous pour répondre à vos besoins de nettoyage et d'entretien d'espaces verts. <a  href="{{ path('show_contact') }}">Contactez-nous</a> dès aujourd'hui pour discuter de vos projets et obtenir <strong>un devis personnalisé</strong> .</p>
 				</div>
 				<div
-					class="img-s2">{# <img src="{{asset('images/section2.jpg')}}" alt="image"> #}
+					class="img-s2"  aria-label="Entretien-Nettoyage">{# <img src="{{asset('images/section2.jpg')}}" alt="image"> #}
 				</div>
 			</div>
 			<div class="herosection">
-				<div class="hs-img">
+				<div class="hs-img"  aria-label="espace vert">
 					<div class="text-hs">
 						<h2>CONTACTEZ-NOUS</h2>
 						<span>Pour en savoir plus sur nos prestations</span>
@@ -81,14 +80,14 @@
 
 			<div class="prestations">
 				<div class="presta">
-				<h4 class="text-center">Espace vert</h4>
+				<h4 class="text-center">ESPACE VERT</h4>
 				{# <span>ESPACE-VERT</span> #}
-					<a  href="{{path('show_espace_vert')}}"><i class="bi bi-search"></i><img src="{{asset('images/prestation1.jpg')}}" alt="ecran1"></a>
+					<a  href="{{path('show_espace_vert')}}"><i class="bi bi-search"></i><img src="{{asset('images/prestation1.jpg')}}" alt="tondre la pelouse"></a>
 				</div>
 				<div class="presta">
-				<h4 class="text-center">Entretien</h4>
+				<h4 class="text-center">ENTRETIEN</h4>
 				{# <span>ENTRETIEN</span> #}
-					<a href="{{path('show_entretien')}}"><i class="bi bi-search"></i><img src="{{asset('images/prestation2.jpg')}}" alt="ecran1"></a>
+					<a href="{{path('show_entretien')}}"><i class="bi bi-search"></i><img src="{{asset('images/prestation2.jpg')}}" alt="nettoyage du sol"></a>
 				</div>
 
 			</div>

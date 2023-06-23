@@ -101,7 +101,11 @@ class DevisFormType extends AbstractType
                     ])]
                 ])
             ->add('intervention', TextType::class, [
-                'label'=>"Lieu d'intervention"
+                'label'=>"Lieu d'intervention",
+                'constraints' => [
+                    new NotBlank([
+                        'message' =>'Ce champ ne peut etre vide'
+                    ])]
             ])
             ->add('submit', SubmitType::class, [
                 'label' => "Suivant",

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}CS NET | Dashboard
+{% block title %}CS NET | Les devis
 {% endblock %}
 
 {% block body %}
@@ -15,7 +15,7 @@
 						<th>CLient</th>
 						<th>Numéro du devis</th>
 						<th>Date</th>
-						<th>Prix</th>
+						<th>Prix final</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -27,9 +27,7 @@
 							<td>{{ item.numberdevis}}</td>
 							<td>{{ item.createdAt | date('d/m/Y')}}</td>
 							<td>
-								{% for detailDevis in item.detaildevis %}
-									{{ detailDevis.pricefinal }}
-								{% endfor %}
+								{{ item.detaildevis|last.pricefinal }}
 							</td>
 							<td>
 								<a href="{{ path('app_devis_pdf', { 'id': item.id }) }}" class="btn btn-info" title="voir les devis">
