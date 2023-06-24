@@ -87,5 +87,9 @@ th, td {
     margin-bottom: 80px;
 }
 
+.mr0{
+    margin-right: inherit !important;
+}
+
 /**********************bootsrap*******************/
 

@@ -5,87 +5,89 @@
 
 {% block body %}
 
-		<div class="row">
-			<div class="col-10 mx-auto my-4">
-	<h2>Confirmation de devis</h2>
+	<div class="row mr0">
+		<div class="col-10 mx-auto my-4">
+			<h2>Confirmation de devis</h2>
 
-	
-	<table class="table">
-			<tr>
-			<th>Numéro du devis</th>
-			<td>{{ devis.numberdevis }}</td>
-		</tr>
-		<tr>
-			<th>Client</th>
-			<td>{{ devis.client }}</td>
-		</tr>
-        <tr>
-			<th>Nom</th>
-			<td>{{ devis.lastname }}</td>
-		</tr>
-        <tr>
-			<th>Prénom</th>
-			<td>{{ devis.firstname }}</td>
-		</tr>
-        <tr>
-			<th>Entreprise</th>
-			<td>{{ devis.society }}</td>
-		</tr>
-        <tr>
-			<th>Adresse</th>
-			<td>{{ devis.adress }}</td>
-		</tr>
-        <tr>
-			<th>Code postal</th>
-			<td>{{ devis.zipcode }}</td>
-		</tr>
-        <tr>
-			<th>Ville</th>
-			<td>{{ devis.city }}</td>
-		</tr>
-        <tr>
-			<th>Intervention</th>
-			<td>{{ devis.intervention }}</td>
-		</tr>
-		<tr>
-			<th>Date</th>
-			<td>{{ devis.createdAt|date('d/m/Y') }}</td>
-		</tr>
-	</table>
 
-	<h3>Services</h3>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Designation</th>
-				<th>Prix unitaire</th>
-				<th>Quantité</th>
-				<th>Prix total</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for service in services %}
+			<table class="table">
 				<tr>
-					<td>{{ service.designation }}</td>
-					<td>{{ service.priceunit }}</td>
-					<td>{{ service.quantity }}</td>
-					<td>{{ service.pricetotal }}</td>
+					<th>Numéro du devis</th>
+					<td>{{ devis.numberdevis }}</td>
 				</tr>
-			{% endfor %}
-            <tr>
-          <td colspan="3" class="text-right font-weight-bold">Prix final</td>
-           <td colspan="2" class="text-left font-weight-bold">
-            {% if services is not empty %}
-                {% set lastService = services|last %}
-                {{ lastService.pricefinal }}
-            {% else %}
-                 N/A
-            {% endif %}
-        </tr> 
-		</tbody>
+				<tr>
+					<th>Client</th>
+					<td>{{ devis.client }}</td>
+				</tr>
+				<tr>
+					<th>Nom</th>
+					<td>{{ devis.lastname }}</td>
+				</tr>
+				<tr>
+					<th>Prénom</th>
+					<td>{{ devis.firstname }}</td>
+				</tr>
+				<tr>
+					<th>Entreprise</th>
+					<td>{{ devis.society }}</td>
+				</tr>
+				<tr>
+					<th>Adresse</th>
+					<td>{{ devis.adress }}</td>
+				</tr>
+				<tr>
+					<th>Code postal</th>
+					<td>{{ devis.zipcode }}</td>
+				</tr>
+				<tr>
+					<th>Ville</th>
+					<td>{{ devis.city }}</td>
+				</tr>
+				<tr>
+					<th>Intervention</th>
+					<td>{{ devis.intervention }}</td>
+				</tr>
+				<tr>
+					<th>Date</th>
+					<td>{{ devis.createdAt|date('d/m/Y') }}</td>
+				</tr>
+			</table>
 
-	</table>
-    </div>
-    <a href="{{ path('app_devis_pdf', {'id': devis.id}) }}" class="btn btn-primary">Générer PDF<i class="bi bi-file-pdf"></i></a>
-    </div>
+			<h3>Services</h3>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Designation</th>
+						<th>Prix unitaire</th>
+						<th>Quantité</th>
+						<th>Prix total</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for service in services %}
+						<tr>
+							<td>{{ service.designation }}</td>
+							<td>{{ service.priceunit }}</td>
+							<td>{{ service.quantity }}</td>
+							<td>{{ service.pricetotal }}</td>
+						</tr>
+					{% endfor %}
+					<tr>
+						<td colspan="3" class="text-right font-weight-bold">Prix final</td>
+						<td colspan="2" class="text-left font-weight-bold">
+							{% if services is not empty %}
+								{% set lastService = services|last %}
+								{{ lastService.pricefinal }}
+							{% else %}
+								N/A
+							{% endif %}
+						</td>
+					</tr>
+				</tbody>
+
+			</table>
+		</div>
+		<a href="{{ path('app_devis_pdf', {'id': devis.id}) }}" class="btn btn-primary">Générer PDF<i class="bi bi-file-pdf"></i>
+		</a>
+	</div>
 {% endblock %}
