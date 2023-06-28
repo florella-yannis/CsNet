@@ -64,114 +64,115 @@
 											<a href="{{ path('create_devis_user', {'id': client.id}) }}" class="btn btn-info" title="Créer un devis">
 												<i class="bi bi-clipboard-plus"></i>
 											</a>
-											 <td>
-                            <a href="{{ path('edit_profil', {'id': client.id}) }}" class="btn btn-primary" title="Modifier">
-                                <i class="bi bi-pencil-fill"></i>
-                            </a>
-                        </td>
 										</td>
-										
+										<td>
+											<a href="{{ path('edit_profil', {'id': client.id}) }}" class="btn btn-primary" title="Modifier">
+												<i class="bi bi-pencil-fill"></i>
+											</a>
+										</td>
 									</tr>
-								{% else %}
-									<tr>
-										<td colspan="7" class="bg-warning text-center">Aucun utilisateur</td>
-									</tr>
-								{% endfor %}
+								</td>
 							</tbody>
-						</table>
-					</div>
-				</div>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="7" class="bg-warning text-center">Aucun utilisateur</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
 
 
-				{# /////////////////////////// Table prospects /////////////////////////////////#}
-				<div class="tab-pane fade" id="pills-prospects" role="tabpanel" aria-labelledby="pills-prospects-tab">
-					<div class="col-10 mx-auto my-4">
-						<h2 class="text-center m-4">Mes prospects</h2>
-						<div class="table-responsive">
-							<table class="table">
-								<thead class="table-light">
-									<tr>
-										<th>Nom</th>
-										<th>Prénom</th>
-										<th>Email</th>
-										<th>Numéro de téléphone</th>
-										<th>Message</th>
-										<th>Date de la demande</th>
+	{# /////////////////////////// Table prospects /////////////////////////////////#}
+	<div class="tab-pane fade" id="pills-prospects" role="tabpanel" aria-labelledby="pills-prospects-tab">
+		<div class="col-10 mx-auto my-4">
+			<h2 class="text-center m-4">Mes prospects</h2>
+			<div class="table-responsive">
+				<table class="table">
+					<thead class="table-light">
+						<tr>
+							<th>Nom</th>
+							<th>Prénom</th>
+							<th>Email</th>
+							<th>Numéro de téléphone</th>
+							<th>Message</th>
+							<th>Date de la demande</th>
 
-									</tr>
-								</thead>
-								<tbody>
-									{% for prospect in prospects %}
-										<tr>
-											<td>{{ prospect.lastname }}</td>
-											<td>{{ prospect.firstname }}</td>
-											<td>{{ prospect.email }}</td>
-											<td>{{ prospect.number }}</td>
-											<td>{{ prospect.message }}</td>
-											<td>{{ prospect.createdAt| date('d/m/Y') }}</td>
+						</tr>
+					</thead>
+					<tbody>
+						{% for prospect in prospects %}
+							<tr>
+								<td>{{ prospect.lastname }}</td>
+								<td>{{ prospect.firstname }}</td>
+								<td>{{ prospect.email }}</td>
+								<td>{{ prospect.number }}</td>
+								<td>{{ prospect.message }}</td>
+								<td>{{ prospect.createdAt| date('d/m/Y') }}</td>
 
-										</tr>
-									{% else %}
-										<tr>
-											<td colspan="7" class="bg-warning text-center">Aucun prospects</td>
-										</tr>
-									{% endfor %}
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-
-				{# /////////////////////////// Table devis /////////////////////////////////#}
-				<div class="tab-pane fade" id="pills-devis" role="tabpanel" aria-labelledby="pills-devis-tab">
-					<div class="col-10 mx-auto my-4">
-						<h2 class="text-center m-4">Mes demandes de devis</h2>
-						<div class="table-responsive">
-							<table class="table">
-								<thead class="table-light">
-									<tr>
-										<th>Nom</th>
-										<th>Prénom</th>
-										<th>Prestation</th>
-										<th>Description</th>
-										<th>Budget</th>
-										<th>Date prévisionnelle</th>
-										<th>Date de demande</th>
-										<th>Numéro de telephone</th>
-										<th>Statut</th>
-										<th>Modifer le statut</th>
-									</tr>
-								</thead>
-								<tbody>
-									{% for demandeDevis in demandesDevis|sort((a, b) => b.createdAt.timestamp - a.createdAt.timestamp)  %}
-										<tr>
-											<td>{{ demandeDevis.user.lastname}}</td>
-											<td>{{ demandeDevis.user.firstname }}</td>
-											<td>{{ demandeDevis.prestation }}</td>
-											<td>{{ demandeDevis.description }}</td>
-											<td>{{ demandeDevis.budget }}
-												€</td>
-											<td>{{ demandeDevis.date | date('d/m/Y') }}</td>
-											<td>{{ demandeDevis.createdAt| date('d/m/Y') }}</td>
-											<td>{{ demandeDevis.user.number}}</td>
-											<td>{{ demandeDevis.statut }}</td>
-											<td>
-												<a href="{{ path('demande_devis_modifier_statut', {'id': demandeDevis.id}) }}" class="btn btn-warning" title="Modifier ">
-													<i class="bi bi-pencil-square"></i>
-												</a>
-
-											</td>
-										</tr>
-									{% else %}
-										<tr>
-											<td colspan="7" class="bg-warning text-center">Aucun prospects</td>
-										</tr>
-									{% endfor %}
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="7" class="bg-warning text-center">Aucun prospects</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
 			</div>
+		</div>
+	</div>
 
-		{% endblock %}
+	{# /////////////////////////// Table devis /////////////////////////////////#}
+	<div class="tab-pane fade" id="pills-devis" role="tabpanel" aria-labelledby="pills-devis-tab">
+		<div class="col-10 mx-auto my-4">
+			<h2 class="text-center m-4">Mes demandes de devis</h2>
+			<div class="table-responsive">
+				<table class="table">
+					<thead class="table-light">
+						<tr>
+							<th>Nom</th>
+							<th>Prénom</th>
+							<th>Prestation</th>
+							<th>Description</th>
+							<th>Budget</th>
+							<th>Date prévisionnelle</th>
+							<th>Date de demande</th>
+							<th>Numéro de telephone</th>
+							<th>Statut</th>
+							<th>Modifer le statut</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for demandeDevis in demandesDevis|sort((a, b) => b.createdAt.timestamp - a.createdAt.timestamp)  %}
+							<tr>
+								<td>{{ demandeDevis.user.lastname}}</td>
+								<td>{{ demandeDevis.user.firstname }}</td>
+								<td>{{ demandeDevis.prestation }}</td>
+								<td>{{ demandeDevis.description }}</td>
+								<td>{{ demandeDevis.budget }}
+									€</td>
+								<td>{{ demandeDevis.date | date('d/m/Y') }}</td>
+								<td>{{ demandeDevis.createdAt| date('d/m/Y') }}</td>
+								<td>{{ demandeDevis.user.number}}</td>
+								<td>{{ demandeDevis.statut }}</td>
+								<td>
+									<a href="{{ path('demande_devis_modifier_statut', {'id': demandeDevis.id}) }}" class="btn btn-warning" title="Modifier ">
+										<i class="bi bi-pencil-square"></i>
+									</a>
+
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="7" class="bg-warning text-center">Aucun prospects</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+			
+		</div>
+	</div>
+</div>{% endblock %}

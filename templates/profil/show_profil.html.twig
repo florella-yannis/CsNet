@@ -21,7 +21,8 @@
 				<button class="nav-link" id="pills-devis-tab" data-bs-toggle="pill" data-bs-target="#pills-devis" type="button" role="tab" aria-controls="pills-devis" aria-selected="false">Mes devis</button>
 			</li>
 		</ul>
-		<div class="tab-content" id="pills-tabContent">
+		<div
+			class="tab-content" id="pills-tabContent">
 			{# /////////////////////////// Table information /////////////////////////////////#}
 			<div class="tab-pane fade show active" id="pills-info" role="tabpanel" aria-labelledby="pills-info-tab">
 
@@ -69,91 +70,91 @@
 				</a>
 			</div>
 
-{# /////////////////////////// Table prospects /////////////////////////////////#}
+			{# /////////////////////////// Table prospects /////////////////////////////////#}
 			<div class="tab-pane fade" id="pills-ddevis" role="tabpanel" aria-labelledby="pills-ddevis-tab">
 
-			<div class="col-10 mx-auto my-4">
+				<div class="col-10 mx-auto my-4">
 
-				<h2 class="text-center m-4">MES DEMANDES DE DEVIS</h2>
+					<h2 class="text-center m-4">MES DEMANDES DE DEVIS</h2>
 
-				<div class="table-responsive">
-					<table class="table">
-						<thead class="table-light">
-							<tr>
-
-
-								<th>Prestation</th>
-								<th>Description</th>
-								<th>Budget</th>
-								<th>Date prévisionnelle</th>
-								<th>Date de demande</th>
-								<th>Statut</th>
-								
-							</tr>
-						</thead>
-
-						<tbody>
-							{% for demandeDevis in demandesDevis %}
+					<div class="table-responsive">
+						<table class="table">
+							<thead class="table-light">
 								<tr>
 
-									<td>{{ demandeDevis.prestation }}</td>
-									<td>{{ demandeDevis.description }}</td>
-									<td>{{ demandeDevis.budget }}
-										€</td>
-									<td>{{ demandeDevis.date | date('d/m/Y') }}</td>
-									<td>{{ demandeDevis.createdAt| date('d/m/Y') }}</td>
-									<td>{{ demandeDevis.statut }}</td>
-									
+
+									<th>Prestation</th>
+									<th>Description</th>
+									<th>Budget</th>
+									<th>Date prévisionnelle</th>
+									<th>Date de demande</th>
+									<th>Statut</th>
 
 								</tr>
-							{% else %}
-								<tr>
-									<td colspan="7" class="bg-warning text-center">Aucune demande de devis</td>
-								</tr>
-							{% endfor %}
-						</tbody>
-					</table>
+							</thead>
+
+							<tbody>
+								{% for demandeDevis in demandesDevis %}
+									<tr>
+
+										<td>{{ demandeDevis.prestation }}</td>
+										<td>{{ demandeDevis.description }}</td>
+										<td>{{ demandeDevis.budget }}
+											€</td>
+										<td>{{ demandeDevis.date | date('d/m/Y') }}</td>
+										<td>{{ demandeDevis.createdAt| date('d/m/Y') }}</td>
+										<td>{{ demandeDevis.statut }}</td>
+
+
+									</tr>
+								{% else %}
+									<tr>
+										<td colspan="7" class="bg-warning text-center">Aucune demande de devis</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
 				</div>
-			</div>
 			</div>
 
 			{# /////////////////////////// Table devis /////////////////////////////////#}
 			<div class="tab-pane fade" id="pills-devis" role="tabpanel" aria-labelledby="pills-devis-tab">
-			<div class="col-10 mx-auto my-4">
+				<div class="col-10 mx-auto my-4">
 
-				<h2 class="text-center m-4">MES DEVIS</h2>
+					<h2 class="text-center m-4">MES DEVIS</h2>
 
-				<div class="table-responsive">
-					<table class="table">
-						<thead class="table-light">
-							<tr>
-								<th>Numero du devis</th>
-								<th>Action</th>
-							</tr>
-						</thead>
-
-						<tbody>
-							{% for item in devis %}
+					<div class="table-responsive">
+						<table class="table">
+							<thead class="table-light">
 								<tr>
-									<td>{{ item.numberdevis }}</td>
-									{# <td>{{ item.date | date('d/m/Y')}}</td>  #}
-									<td>
-										<a href="{{ path('app_devis_pdf', { 'id': item.id }) }}" class="btn btn-info" title="voir devis ">
-											<i class="bi bi-eye"></i>
-										</a>
-										
-									</td>
+									<th>Numero du devis</th>
+									<th>Action</th>
+								</tr>
+							</thead>
 
-								</tr>
-							{% else %}
-								<tr>
-									<td colspan="7" class="bg-warning text-center">Aucun devis</td>
-								</tr>
-							{% endfor %}
-						</tbody>
-					</table>
+							<tbody>
+								{% for item in devis %}
+									<tr>
+										<td>{{ item.numberdevis }}</td>
+										{# <td>{{ item.date | date('d/m/Y')}}</td>  #}
+										<td>
+											<a href="{{ path('app_devis_pdf', { 'id': item.id }) }}" class="btn btn-info" title="voir devis ">
+												<i class="bi bi-eye"></i>
+											</a>
+
+										</td>
+
+									</tr>
+								{% else %}
+									<tr>
+										<td colspan="7" class="bg-warning text-center">Aucun devis</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
-</div>
 		</div>
 	{% endblock %}
