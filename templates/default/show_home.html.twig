@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}CS NET | Entreprise nettoyage, entretien dans l'Oise et le Val d'oise {% endblock %}
+{% block title %}CS NET | Entreprise nettoyage, entretien dans l'Oise et le Val d'oise
+{% endblock %}
 
 {% block body %}
 	<main>
@@ -8,14 +9,16 @@
 
 		<section class="section1">
 			<div class="row">
-				<div class="col-6 mx-auto">
+				<div class="col-12 mx-auto">
 					{% include 'include/_flashes.html.twig' %}
 				</div>
 			</div>
-			<div class="herobanner"  aria-label="entretien-nettoyage">
-				<div class="text-hb">
+			<div class="herobanner" aria-label="entretien-nettoyage">
+				<img src="{{ asset('images/herob.jpg') }}" alt="Entretien-et-nettoyage"/>
+				<div class="text-hb hidden-title">
 					<h1>Entretien d'immeuble, de bureau, copropriété et d'espace vert</h1>
-					<span>Toute mon experience à votre service</span>
+					<span>Toute mon expérience à votre service</span>
+
 				</div>
 				<a href="#presentation">
 					<i class="fa-solid fa-chevron-down" style="color: #000000;"></i>
@@ -23,28 +26,40 @@
 			</div>
 		</section>
 
+
 		{# *****************section2****************** #}
-		<section class="section2" id="presentation">
+		<section class="section2 " id="presentation">
 			<h2>CS NET , Entreprise de nettoyage et d'entretien dans l'Oise et le Val d'oise</h2>
-			<div class="container">
+			<div class="container reveal">
 				<div class="text-s2">
 					<h4 class="mb-4">DES PRESTATIONS VARIÉES</h4>
-					<p>Nous offrons des services de nettoyage professionnels pour <strong>les bureaux et les espaces communs</strong>, ainsi que <a href="{{ path('show_espace_vert') }}">l'entretien de jardins</a>  pour <strong>les particuliers et les entreprises</strong>. Nous sommes déterminés à fournir des services de qualité supérieure à nos clients, avec des équipes expérimentées et des équipements modernes pour garantir un travail efficace et rapide.</p>
-					<p>Nous sommes fiers de notre approche personnelle et de notre engagement à fournir un excellent service client. Notre objectif est de répondre à tous les besoins de <a  href="{{ path('show_entretien') }}">nettoyage et d'entretien</a> de nos clients avec des solutions <strong>sur mesure, adaptées à chaque situation</strong>.</p>
-					<p>Nous sommes impatients de travailler avec vous pour répondre à vos besoins de nettoyage et d'entretien d'espaces verts. <a  href="{{ path('show_contact') }}">Contactez-nous</a> dès aujourd'hui pour discuter de vos projets et obtenir <strong>un devis personnalisé</strong> .</p>
+					<p>Nous offrons des services de nettoyage professionnels pour
+						<strong>les bureaux et les espaces communs</strong>, ainsi que
+						<a href="{{ path('show_espace_vert') }}">l'entretien de jardins</a>
+						pour
+						<strong>les particuliers et les entreprises</strong>. Nous sommes déterminés à fournir des services de qualité supérieure à nos clients, avec des équipes expérimentées et des équipements modernes pour garantir un travail efficace et rapide.</p>
+					<p>Nous sommes fiers de notre approche personnelle et de notre engagement à fournir un excellent service client. Notre objectif est de répondre à tous les besoins de
+						<a href="{{ path('show_entretien') }}">nettoyage et d'entretien</a>
+						de nos clients avec des solutions
+						<strong>sur mesure, adaptées à chaque situation</strong>.</p>
+					<p>Nous sommes impatients de travailler avec vous pour répondre à vos besoins de nettoyage et d'entretien d'espaces verts.
+						<a href="{{ path('show_contact') }}">Contactez-nous</a>
+						dès aujourd'hui pour discuter de vos projets et obtenir
+						<strong>un devis personnalisé</strong>
+						.</p>
 				</div>
-				<div
-					class="img-s2"  aria-label="Entretien-Nettoyage">{# <img src="{{asset('images/section2.jpg')}}" alt="image"> #}
+				<div class="img-s2" aria-label="Entretien-Nettoyage">
+					<img src="{{ asset('images/section2.jpg') }}" alt="femme-ménage-entreprise">
 				</div>
 			</div>
 			<div class="herosection">
 
-				<div class="hs-img"  aria-label="espace vert">
-				
-					<div class="text-hs">
+				<div class="hs-img" aria-label="espace vert">
+
+					<div class="text-hs reveal">
 						<h2>CONTACTEZ-NOUS</h2>
 						<span>Pour en savoir plus sur nos prestations</span>
-						<a class="btn btn-success"  href="{{ path('show_contact') }}">Nous contacter</a>
+						<a class="btn btn-success" href="{{ path('show_contact') }}">Nous contacter</a>
 					</div>
 				</div>
 			</div>
@@ -53,7 +68,7 @@
 		{# *****************section3****************** #}
 		<section class="section3">
 			<h2 class="text-center mbp80">Pourquoi choisir la société CS NET ?</h2>
-			<div class="container2">
+			<div class="container2 reveal">
 				<div class="box">
 					<div class="grad s1">
 						<i class="bi bi-award-fill"></i>
@@ -72,61 +87,60 @@
 						<h3>Devis gratuit personnalisé</h3>
 					</div>
 				</div>
-			
-		</section>
-		<div class="trait"></div>
-		{# /*****************section4**********************/ #}
 
-		<section class="section4">
-			<h2 class="text-center mbp80">Nos prestations</h2>
+			</section>
+			<div class="trait"></div>
+			{# /*****************section4**********************/ #}
 
-			<div class="prestations">
-				<div class="presta">
-				<h4 class="text-center">ESPACE VERT</h4>
-				{# <span>ESPACE-VERT</span> #}
-					<a  href="{{path('show_espace_vert')}}"><i class="bi bi-search"></i><img src="{{asset('images/prestation1.jpg')}}" alt="tondre la pelouse"></a>
+			<section class="section4">
+				<h2 class="text-center mbp80">Nos prestations</h2>
+
+				<div class="prestations reveal">
+					<div class="presta">
+						<h4 class="text-center">ESPACE VERT</h4>
+						<a href="{{path('show_espace_vert')}}">
+							<i class="bi bi-search"></i><img src="{{asset('images/prestation1.jpg')}}" alt="tondre-la-pelouse"></a>
+					</div>
+					<div class="presta">
+						<h4 class="text-center">ENTRETIEN</h4>
+						<a href="{{path('show_entretien')}}">
+							<i class="bi bi-search"></i><img src="{{asset('images/prestation2.jpg')}}" alt="nettoyage-du-sol"></a>
+					</div>
 				</div>
-				<div class="presta">
-				<h4 class="text-center">ENTRETIEN</h4>
-				{# <span>ENTRETIEN</span> #}
-					<a href="{{path('show_entretien')}}"><i class="bi bi-search"></i><img src="{{asset('images/prestation2.jpg')}}" alt="nettoyage du sol"></a>
+			</section>
+
+			{# /**********section5******************/ #}
+
+			<section class="section5">
+				<div class="herosection2">
+					<div class="hs-img2">
+						<h2>Contact</h2>
+					</div>
 				</div>
 
-			</div>
-		</section>
-
-		{# /**********section5******************/ #}
-
-		<section class="section5">
-			<div class="herosection2">
-				<div class="hs-img2">
-					<h2>Contact</h2>
+				<div class="map">
+					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d16340.488788210181!2d2.15257321695158!3d49.12658042941474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6590310dd69d9%3A0x40b82c3688b2f70!2s95690%20Nesles-la-Vall%C3%A9e!5e0!3m2!1sfr!2sfr!4v1682695877633!5m2!1sfr!2sfr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+					<div class="carte reveal">
+						<h2>Vous avez un projet ?</h2>
+						<p>Je serai ravi d'en discuter avec vous.</p>
+						<ul>
+							<li>
+								<i class="fa-solid fa-location-dot"></i>
+								95690 Nesles-la-Vallée</li>
+							<li>
+								<i class="fa-solid fa-location-arrow"></i>
+								L'Oise et Val d'Oise</li>
+							<li>
+								<i class="fa-solid fa-phone"></i>
+								+33 06 11 22 22 33</li>
+							<li>
+								<i class="fa-solid fa-car"></i>
+								Permis B</li>
+						</ul>
+					</div>
 				</div>
-			</div>
 
-			<div class="map">
-				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d16340.488788210181!2d2.15257321695158!3d49.12658042941474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6590310dd69d9%3A0x40b82c3688b2f70!2s95690%20Nesles-la-Vall%C3%A9e!5e0!3m2!1sfr!2sfr!4v1682695877633!5m2!1sfr!2sfr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-				<div class="carte">
-					<h2>Vous avez un projet ?</h2>
-					<p>Je serai ravi d'en discuter avec vous.</p>
-					<ul>
-						<li>
-							<i class="fa-solid fa-location-dot"></i>
-							95690 Nesles-la-Vallée</li>
-						<li>
-							<i class="fa-solid fa-location-arrow"></i>
-							L'Oise et Val d'Oise</li>
-						<li>
-							<i class="fa-solid fa-phone"></i>
-							+33 06 11 22 22 33</li>
-						<li>
-							<i class="fa-solid fa-car"></i>
-							Permis B</li>
-					</ul>
-				</div>
-			</div>
+			</section>
 
-		</section>
-
-	</main>
-{% endblock %}
+		</main>
+	{% endblock %}

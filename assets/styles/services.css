@@ -41,7 +41,7 @@
 .img-s4{
     height: 500px;
     width: 60%;
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     transition: filter 0.4s ease;
     filter: brightness(80%);
@@ -51,12 +51,6 @@
     filter: brightness(100%);
 }
 
-.img-s3{
-    background-image: url(../../public/images/images3.jpg);
-}
-.img-s4{
-    background-image: url(../../public/images/images4.jpg);
-}
 
 .sp{
     display: flex;
@@ -85,7 +79,7 @@
         margin: 40px 0;
     }
     .img-s3, .img-s4 {
-        background-size: cover;
-    background-position: center;
+        width: 100%;
+        height: auto;
     } 
 }

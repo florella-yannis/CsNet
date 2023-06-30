@@ -52,7 +52,7 @@ class DefaultController extends AbstractController
             //email
             $email = (new TemplatedEmail())
             ->from($prospect->getEmail())
-            ->to('contact@csnet.com')
+            ->to('contact@csnet.fr')
             //->cc('cc@example.com')
             //->bcc('bcc@example.com')
             //->replyTo('fabien@example.com')
@@ -67,7 +67,7 @@ class DefaultController extends AbstractController
 
         $mailer->send($email);
 
-            $this->addFlash('success', "Votre demande a été pris en compte");
+            $this->addFlash('success', "Votre demande a été prise en compte");
             return $this->redirectToRoute('show_home');
         }
 

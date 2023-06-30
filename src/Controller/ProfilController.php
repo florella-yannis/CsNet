@@ -141,7 +141,7 @@ class ProfilController extends AbstractController
 
             $repository->save($demandeDevis, true);
 
-            $this->addFlash('success', "Votre demande de devis a été pris en compte.");
+            $this->addFlash('success', "Votre demande de devis a été prise en compte.");
             return $this->redirectToRoute('show_profil');
         }
 

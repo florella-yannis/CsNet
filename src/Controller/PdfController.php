@@ -17,11 +17,15 @@ class PdfController extends AbstractController
     {
         $dompdf = new Dompdf();
 
+        $imageData = base64_encode(file_get_contents('images/lgg.png'));
+
+
         $services = $entityManager->getRepository(DetailDevis::class)->findBy(['devis' => $devis]);
 
         $html = $this->renderView('pdf/pdf.html.twig', [
             'devis' => $devis,
-            'services' => $services
+            'services' => $services,
+            'image'=>$imageData
         ]);
 
         //  dd($html);
@@ -32,7 +36,7 @@ class PdfController extends AbstractController
 
         $output = $dompdf->output();
         $filename = 'devis_' . $devis->getNumberdevis() . '.pdf';
-        $file = $this->getParameter('kernel.project_dir') . '/public/' . $filename;
+        $file = $this->getParameter('uploads_dir') . '/' . $filename;
 
         file_put_contents($file, $output);
         //afichage du pdf 

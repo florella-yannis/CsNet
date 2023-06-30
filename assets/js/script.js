@@ -12,4 +12,3 @@ entrepriseInput.addEventListener("change", toggleCompanyInput);
 
 toggleCompanyInput();
 
-

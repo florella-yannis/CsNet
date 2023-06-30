@@ -7,36 +7,37 @@
 
 	<div class="service">
 		<div class="herocontact">
-			<h1 class="txt-h1">Contact</h1>
+			<h1 class="txt-h1 hidden-title">Contact</h1>
 		</div>
 	</div>
 
 	<div class="row mr0">
-		<div class="col-8 mx-auto">
-			<h2>Nous Contacter</h2>
-			<p>Pour tout renseignement ou demande de devis, n'hésitez pas à nous contacter via ce formulaire ou bien en nous appelant directement par téléphone. Pour toute demande effectuée par le site, nous vous répondrons dans un délai maximum de 48h.</p>
-			<div class="row">
-				{{ form_start(form) }}
-				<div class="row">
-					<div class="col-md-6">{{ form_row(form.firstname) }}</div>
-					<div class="col-md-6">{{ form_row(form.lastname) }}</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6">{{ form_row(form.email) }}</div>
-					<div class="col-md-6">{{ form_row(form.number) }}</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12">{{ form_row(form.subject) }}</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12">{{ form_row(form.message) }}</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12">{{ form_row(form.submit) }}</div>
-				</div>
-				{{ form_end(form) }}
-			</div>
-		</div>
+	<div class="col-8 mx-auto">
+    <h2>Nous Contacter</h2>
+    <p>Pour tout renseignement ou demande de devis, n'hésitez pas à nous contacter via ce formulaire ou bien en nous appelant directement par téléphone. Pour toute demande effectuée par le site, nous vous répondrons dans un délai maximum de 48h.</p>
+    <div class="row">
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="col-lg-6 ">{{ form_row(form.firstname) }}</div>
+            <div class="col-lg-6 ">{{ form_row(form.lastname) }}</div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 ">{{ form_row(form.email) }}</div>
+            <div class="col-lg-6 ">{{ form_row(form.number) }}</div>
+        </div>
+        <div class="row">
+            <div class="col-12">{{ form_row(form.subject) }}</div>
+        </div>
+        <div class="row">
+            <div class="col-12">{{ form_row(form.message) }}</div>
+        </div>
+        <div class="row">
+            <div class="col-12">{{ form_row(form.submit) }}</div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+</div>
+
 	</div>
 
 	<div class="map">

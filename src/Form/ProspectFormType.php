@@ -4,15 +4,17 @@ namespace App\Form;
 
 use App\Entity\Prospect;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Karser\Recaptcha3Bundle\Form\Recaptcha3Type;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3;
 
 class ProspectFormType extends AbstractType
 {
@@ -78,16 +80,22 @@ class ProspectFormType extends AbstractType
             ->add('number', NumberType::class, [
                 'label' => "Numéro de téléphone",
                 'constraints' => [
-                    new NotBlank(),
+                    new NotBlank([
+                        'message' =>'Ce champ ne peut etre vide'
+                    ]),
                 ]
             ])
             ->add('message', TextareaType::class, [
                 'label' => "Message",
                 'constraints' => [
-                    new NotBlank(),
+                    new NotBlank([
+                        'message' =>'Ce champ ne peut etre vide'
+                    ]),
                     new Length([
                         'min' => 4,
-                        'max' => 600
+                        'max' => 600,
+                        'minMessage' =>'Ce champ doit comporter au minimum {{ limit }} caractères.',
+                        'maxMessage' =>'Ce champ doit comporter au maximum {{ limit }} caractères.',
                     ])
                 ]
             ])
@@ -97,7 +105,12 @@ class ProspectFormType extends AbstractType
                 'attr' => [
                     'class' => 'd-block mx-auto my-3 col-3 btn btn-primary'
                 ]
-            ]);
+            ])
+            ->add('captcha', Recaptcha3Type::class, [
+                'constraints' => new Recaptcha3(),
+                'action_name' => 'contact',
+                'locale'=>'fr'
+            ])
         ;
     }
 

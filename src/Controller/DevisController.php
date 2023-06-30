@@ -171,7 +171,7 @@ class DevisController extends AbstractController
     #[Route('/voir-mes-devis', name: 'show_devis', methods: ['GET', 'POST'])]
     public function showDevis(EntityManagerInterface $entityManager, DevisRepository $demandeDevisRepository): Response
     {
-        $devis = $entityManager->getRepository(Devis::class)->findAll();
+        $devis = $entityManager->getRepository(Devis::class)->findBy([], ['createdAt' => 'DESC']);
         $services = $entityManager->getRepository(DetailDevis::class)->findBy(['devis' => $devis]);
 
         return $this->render('admin/devis/show_devis.html.twig', [

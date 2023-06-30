@@ -91,5 +91,28 @@ th, td {
     margin-right: inherit !important;
 }
 
-/**********************bootsrap*******************/
+/**********************scroll efect*******************/
+.reveal{
+    position: relative;
+    transform: translateY(150px);
+    opacity: 0;
+    transition: 1s all ease;
+  }
+  
+  .reveal.active{
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .hidden-title {
+    opacity: 0;
+    transition: opacity 1.2s, transform 1.2s ease-in-out;
+    transform: translateY(-20px);
+  }
+  
+  .show-title {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
 

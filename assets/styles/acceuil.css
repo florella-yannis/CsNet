@@ -78,38 +78,56 @@ header .nav-link:hover{
     
 /**********section1*****************/
 
-.section1{
+.section1 {
     width: 100%;
     height: 750px;
 }
-.section1 .herobanner{
+
+.section1 .herobanner {
     width: 100%;
     height: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    background-image: url(../../public/images/herob.jpg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
     position: relative;
 }
-.section1 .herobanner .text-hb h1{
-    font-size: 3.3rem;
-    color: #ffffff;
-    font-family: 'Open Sans', sans-serif;
+
+.section1 .herobanner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.section1 .herobanner .text-hb {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
+    color: #ffffff;
+    width: 90%;
+}
+
+.section1 .herobanner .text-hb h1 {
+    font-size: 3.3rem;
+    font-family: 'Open Sans', sans-serif;
     margin: 20px 30px;
 }
-.section1 .herobanner a{
+
+.section1 .herobanner .text-hb span {
+    color: #ffffff;
+}
+
+.section1 .herobanner a {
     position: absolute;
     bottom: 75px;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
-.section1 .herobanner a i{
+
+.section1 .herobanner a i {
     font-size: 25px;
 }
 
-.section1 .herobanner div{
+.section1 .herobanner div {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -117,6 +135,8 @@ header .nav-link:hover{
     background-color: rgba(54, 51, 51, 0.29);
     padding: 40px 25px;
 }
+
+
 .section1 .herobanner .text-hb span{
     color: #ffff;
     text-align: center;
@@ -134,22 +154,24 @@ header .nav-link:hover{
 .section2 .container{
     display: flex;
     margin: 50px 0;
+    align-items: center;
 
 }
 
 .section2 .container .text-s2{
-width: 60%;
+    width: 70%;
 }
+.section2 .container .img-s2 {
+    width: 50%;
+    height: auto;
+}
+
 .section2 .container .text-s2 p{
     margin: 10px 20px;
     line-height: 1.7rem;
     }
-.section2 .container .img-s2{
-    width: 40%;
-    background-image: url(../../public/images/section2.jpg);
-    background-size: cover;
-    background-position: right;
-    background-repeat: no-repeat;
+.section2 .container .img-s2 img{
+    width: 100%;
 }
 
 
@@ -383,9 +405,6 @@ iframe{
 
 @media  screen and (max-width:992px){
 
-    .section1 .herobanner div {
-        margin: 0 20px;
-    }
 
     .section2 .container {
         flex-direction: column-reverse;
@@ -395,7 +414,6 @@ iframe{
     }
     .section2 .container .img-s2 {
         width: 100%;
-        height: 500px;
     }
     .section2>h2 {
         text-align: center;
