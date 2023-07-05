@@ -88,7 +88,7 @@ class DefaultController extends AbstractController
         return $this->render('divers/mentions_legales.html.twig');
     }
 
-    #[Route('/conditions-generales-de-vente', name: 'conditions_generales',methods:['GET'])]
+    #[Route('/conditions-generales', name: 'conditions_generales',methods:['GET'])]
     public function conditionsGenerales(): Response
     {
         return $this->render('divers/conditions_generales.html.twig');
