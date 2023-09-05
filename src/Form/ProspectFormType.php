@@ -6,6 +6,7 @@ use App\Entity\Prospect;
 use Symfony\Component\Form\AbstractType;
 use Karser\Recaptcha3Bundle\Form\Recaptcha3Type;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3;
 
@@ -98,7 +100,16 @@ class ProspectFormType extends AbstractType
                         'maxMessage' =>'Ce champ doit comporter au maximum {{ limit }} caractères.',
                     ])
                 ]
-            ])
+                ])
+            //     ->add('accept_conditions', CheckboxType::class, [
+            //         'label' => "J'accepte les conditions générales",
+            //         'required' => true,
+            //         'constraints' => [
+            //             new IsTrue([
+            //                 'message' => 'Vous devez accepter les conditions générales.',
+            //             ]),
+            //         ],
+            // ])
             ->add('submit', SubmitType::class, [
                 'label' => "Envoyer",
                 'validate' => false,
