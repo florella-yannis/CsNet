@@ -52,7 +52,7 @@ class RegisterFormType extends AbstractType
                         'message' => 'Le mot de passe doit contenir au moins une lettre minuscule, une lettre majuscule et un chiffre.',
                     ]),
                     new Length([
-                        'min' => 4,
+                        'min' => 12,
                         'max' => 255,
                         'minMessage' =>'Votre mot de passe doit comporter au minimum {{ limit }} caractères.(Mot de passe : {{ value }})',
                         'maxMessage' =>'Votre mot de passe doit comporter au maximum {{ limit }} caractères.(Mot de passe : {{ value }})',

@@ -35,7 +35,9 @@ class UserController extends AbstractController
 
             $user->setRoles(['ROLE_USER']);
 
+            // Utilise le hasheur de mot de passe pour hasher et définir le nouveau mot de passe de l'utilisateur.
             $user->setPassword($passwordHasher->hashPassword($user, $user->getPassword()));
+
 
             $repository->save($user, true);
 
